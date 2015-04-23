@@ -4,12 +4,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class temas_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
+
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants.add("/header.jsp");
+  }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -46,25 +51,23 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
+      out.write("    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Jeopardy!</title>\n");
+      out.write("        <title>Jeopardy</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("    <center>\n");
-      out.write("        <h1>Juego de Jeopardy!</h1>\n");
-      out.write("        <h3>Favor de validar su acceso.</h3>\n");
-      out.write("        <br>\n");
-      out.write("        <fieldset style=\"width:250px\">\n");
-      out.write("            <form action=\"login\" method=\"post\">\n");
-      out.write("                <table>\n");
-      out.write("                    <tr><td>Username:</td><td><input type=\"text\" name=\"username\"></td></tr>\n");
-      out.write("                    <tr><td>Password:</td><td><input type=\"password\" name=\"password\"></tr></tr>\n");
-      out.write("                </table>\n");
-      out.write("                <input type=\"submit\" value=\"Entrar\">\n");
-      out.write("            </form>\n");
-      out.write("        </fieldset>\n");
-      out.write("    </center>\n");
+      out.write("        \n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+      out.write("\n");
+      out.write("    <body>\n");
+      out.write("        <h1>Hello World!</h1>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

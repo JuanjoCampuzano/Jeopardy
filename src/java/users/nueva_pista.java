@@ -34,6 +34,7 @@ public class nueva_pista extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        String url;
+       
        try{
             // Realizar conexion a la base de datos y extraer datos de usuarios
             url="jdbc:mysql://localhost/jeopardy";
@@ -44,10 +45,12 @@ public class nueva_pista extends HttpServlet {
             while(rs.next()){
                 
             }
+            
        }catch(Exception e){
             System.out.println(e);
+        }
+    
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

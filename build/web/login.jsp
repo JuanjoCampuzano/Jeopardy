@@ -15,10 +15,10 @@
             if (msg == null) msg = "";
         %>
     <center>
-        <h1>Juego de Jeopardy!</h1>
-        <h3>Favor de validar su acceso.</h3>
+        <h1 style="color:whitesmoke">Juego de Jeopardy!</h1>
+        <h3 style="color:whitesmoke">Favor de validar su acceso.</h3>
         <br>
-        <h4 style="color:red"><%=msg%></h4>
+        <h4 style="color:whitesmoke"><%=msg%></h4>
         <fieldset style="width:250px">
             <form action="loginattempt" method="post">
                 <table>

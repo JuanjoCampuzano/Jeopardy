@@ -44,7 +44,9 @@ public class loginattempt extends HttpServlet {
         // Crear sesion, asumir que no se hizo log in exitoso
         HttpSession session = request.getSession();
         session.setAttribute("loggedIn",false);
+        session.setAttribute("loginmsg","");
         String url="/login.jsp";
+        
         
         try{
             // Realizar conexion a la base de datos y extraer datos de usuarios
@@ -58,6 +60,13 @@ public class loginattempt extends HttpServlet {
                 String pw = rs.getString(2);
                 int att = rs.getInt(3) + 1;
                 // Verificar que la cuenta no este bloqueda
+                if (att >= 4){
+                    session.setAttribute("loginmsg", "Esta cuenta esta bloqueda.");
+                    url = "/login.jsp";
+                    query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
+                    stmt.executeUpdate(query);
+                    break;
+                }
                 // Comaprar parametros de forma con datos de la tabla
                 if (un.equals(username)){
                     if (pw.equals(password)){
@@ -65,6 +74,9 @@ public class loginattempt extends HttpServlet {
                         url = "/temas.jsp";
                         session.setAttribute("loggedIn",true);
                         session.setAttribute("username",username);
+                        session.setAttribute("loginmsg","");
+                        query = "UPDATE usuarios SET failed=0 WHERE username='"+un+"'";
+                        stmt.executeUpdate(query);
                         break;
                     } else {
                         // Log in fallido, incrementar el numero de intentos
@@ -80,10 +92,11 @@ public class loginattempt extends HttpServlet {
 	} catch(Exception e){
             System.out.println(e);
 	}
+
         // Hacer el forward del servlet
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher(url);
-            rd.forward(request, response);
+        ServletContext sc = getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(url);
+        rd.forward(request, response);
         
     }
 

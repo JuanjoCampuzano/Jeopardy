@@ -9,40 +9,13 @@
 <html>
     <%@include file='header.jsp' %>
     <body>
-        <form id="creacion_form">
-            <table id="table_creacion">
-                <tr>
-                    <td>
-                        <select>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <select>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <select>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <select>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <select>
-                        </select>
-                    </td>
-                </tr>
-                <input type="submit" value="Enviar categorias"/>
-            </table>
+        <form>
+            <h1>Seleccion de tema 1</h1>
+            <select>
+                <option>
+                    
+                </option>
+            </select>
         </form>
     </body>
 </html>

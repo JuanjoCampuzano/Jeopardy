@@ -47,11 +47,11 @@ public class loginattempt extends HttpServlet {
         session.setAttribute("loginmsg","");
         String url="/login.jsp";
         
-        
+   
         try{
             // Realizar conexion a la base de datos y extraer datos de usuarios
-            url="jdbc:mysql://localhost/jeopardy";
-            Connection con=DriverManager.getConnection(url, "root","");
+            String dburl="jdbc:mysql://localhost/jeopardy";
+            Connection con=DriverManager.getConnection(dburl, "root","");
             Statement stmt=con.createStatement();
             String query = "SELECT * FROM usuarios";
             ResultSet rs=stmt.executeQuery(query);

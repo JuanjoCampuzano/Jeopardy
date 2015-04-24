@@ -38,3 +38,27 @@ and open the template in the editor.
         color: #000000;
         border-radius: 10px; 
     }
+    
+    #table_juego{
+        border:solid;
+        border-width:10px;
+        border-color:#101010;
+    }
+    
+    #header_juego{
+         color: yellow; 
+        background-color: blue; 
+        font-size: 40px; 
+        font-family: "Helvetica";
+        padding: 15px;
+    }
+    
+    #juego_valor {
+        color: yellow; 
+        background-color: blue; 
+        font-size: 40px; 
+        font-family: "Helvetica";
+        padding: 15px;
+    }
+    #juego_valor:hover {background-color: #507FFF;}
+    #juego_valor:active {color:orangered;}

@@ -8,7 +8,8 @@
 <!DOCTYPE html>
 <html>
     <%@include file="header.jsp"%>
-    <body>
+    <body id="body_juego">
+        <h1 id="bienvenida">Juega Jeopardy!</h1>
         <table id='table_juego'>
             <tr>
                 <th id="header_juego">Categoria 1</th>
@@ -19,7 +20,7 @@
             </tr>
             <tr></tr>
             <tr>
-                <td>200</td><td id="juego_valor">200</td><td id="juego_valor">200</td><td id="juego_valor">200</td><td id="juego_valor">200</td>
+                <td id="juego_valor">200</td><td id="juego_valor">200</td><td id="juego_valor">200</td><td id="juego_valor">200</td><td id="juego_valor">200</td>
             </tr>
             <tr>
                 <td id="juego_valor">400</td><td id="juego_valor">400</td><td id="juego_valor">400</td><td id="juego_valor">400</td><td id="juego_valor">400</td>

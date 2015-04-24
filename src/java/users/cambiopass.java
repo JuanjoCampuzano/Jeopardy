@@ -62,7 +62,7 @@ public class cambiopass extends HttpServlet {
                     if (actual.equals(rs.getString(2))){
                         query = "UPDATE usuarios SET password='"+nueva1+"' WHERE username='"+username+"'";
                         response.getWriter().print(query);
-                        stmt.executeQuery(query);
+                        stmt.executeUpdate(query);
                     }
                 }
                 
@@ -72,11 +72,12 @@ public class cambiopass extends HttpServlet {
                 System.out.println(e);
             }      
 	}
-        url ="/index.html";
+        url ="/login.jsp";
         // Hacer el forward del servlet
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher(url);
-            //rd.forward(request, response);
+            rd.forward(request, response);
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -10,10 +10,15 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
+        <%
+            String msg = (String)session.getAttribute("loginmsg");
+            if (msg == null) msg = "";
+        %>
     <center>
         <h1>Juego de Jeopardy!</h1>
         <h3>Favor de validar su acceso.</h3>
         <br>
+        <h4 style="color:red"><%=msg%></h4>
         <fieldset style="width:250px">
             <form action="loginattempt" method="post">
                 <table>

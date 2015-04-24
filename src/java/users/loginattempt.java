@@ -57,6 +57,7 @@ public class loginattempt extends HttpServlet {
                 String un = rs.getString(1);
                 String pw = rs.getString(2);
                 int att = rs.getInt(3) + 1;
+                // Verificar que la cuenta no este bloqueda
                 // Comaprar parametros de forma con datos de la tabla
                 if (un.equals(username)){
                     if (pw.equals(password)){

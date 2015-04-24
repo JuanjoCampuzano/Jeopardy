@@ -62,7 +62,7 @@ public class loginattempt extends HttpServlet {
                 if (un.equals(username)){
                     if (pw.equals(password)){
                         // Log in exitoso
-                        url = "/menu.jsp";
+                        url = "/temas.jsp";
                         session.setAttribute("loggedIn",true);
                         session.setAttribute("username",username);
                         break;

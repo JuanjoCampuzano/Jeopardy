@@ -8,12 +8,18 @@
 <!DOCTYPE html>
 <html>
     <%@include file='header.jsp' %>
+    <%
+        
+    %>
     <body>
         <form id="creacion_form">
             <table id="table_creacion">
                 <tr>
                     <td>
                         <select>
+                            <%
+                                
+                            %>
                         </select>
                     </td>
                 </tr>

@@ -20,19 +20,19 @@
                     </form>
                 </td>                   
                 <td>
-                    <form action="" method="post">
+                    <form action="editar_perfil.jsp" method="post">
                     <input type="submit" id="click_button" value="Editar Perfil"/>
                     </form>
                 </td>
             </tr>
             <tr id="table_row">
                 <td>
-                    <form action="nueva_categoria.jsp" method="post">
+                    <form action="nueva_clase.jsp" method="post">
                     <input type="submit" id="click_button" value="Nueva Clase"/>
                     </form>
                 </td>
                 <td>
-                    <form action="nueva_pista.jsp" method="post">
+                    <form action="nueva_pista" method="post">
                     <input type="submit" id="click_button" value="Nueva Pista"/>
                     </form>
                 </td>  
@@ -56,7 +56,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="" method="Post">
+                    <form action="editar_pista.jsp" method="Post">
                     <input type="submit" id="click_button" value="Editar Pistas"/>
                     </form>
                 </td>  
@@ -68,7 +68,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="cambiarpassword" method="post">
+                    <form action="cambiarpassword.jsp" method="post">
                     <input type="submit" id="click_button" value="Cambiar contraseña"/>
                     </form>
                 </td>  

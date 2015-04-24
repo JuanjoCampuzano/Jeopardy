@@ -8,6 +8,10 @@
         <servlet-name>cambiopass</servlet-name>
         <servlet-class>users.cambiopass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>nueva_pista</servlet-name>
+        <servlet-class>users.nueva_pista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginattempt</servlet-name>
         <url-pattern>/loginattempt</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>cambiopass</servlet-name>
         <url-pattern>/cambiopass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>nueva_pista</servlet-name>
+        <url-pattern>/nueva_pista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

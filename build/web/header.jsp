@@ -10,5 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Jeopardy</title>
+        <link type="text/css" rel="stylesheet" href="document_css.css" />
     </head>
 </html>

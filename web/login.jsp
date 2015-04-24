@@ -15,8 +15,8 @@
             if (msg == null) msg = "";
         %>
     <center>
-        <h1 id="bienvenida">Juego de Jeopardy!</h1>
-        <h3 id="seleccion">Favor de validar su acceso.</h3>
+        <h1 id="bienvenida" style="color:whitesmoke">Juego de Jeopardy!</h1>
+        <h3 id="seleccion"  style="color:whitesmoke">Favor de validar su acceso.</h3>
         <br>
         <h4 style="color:whitesmoke"><%=msg%></h4>
         <fieldset style="width:250px">

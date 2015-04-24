@@ -47,11 +47,11 @@ public class loginattempt extends HttpServlet {
         session.setAttribute("loginmsg","");
         String url="/login.jsp";
         
-        
+   
         try{
             // Realizar conexion a la base de datos y extraer datos de usuarios
-            url="jdbc:mysql://localhost/jeopardy";
-            Connection con=DriverManager.getConnection(url, "root","");
+            String dburl="jdbc:mysql://localhost/jeopardy";
+            Connection con=DriverManager.getConnection(dburl, "root","");
             Statement stmt=con.createStatement();
             String query = "SELECT * FROM usuarios";
             ResultSet rs=stmt.executeQuery(query);
@@ -83,7 +83,7 @@ public class loginattempt extends HttpServlet {
                         query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
                         stmt.executeUpdate(query);
                         url = "/login.jsp";
-                        session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intentos fallido"+((att==1)?".":"s."));
+                        session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intento"+((att==1)?"":"s")+" fallido"+((att==1)?".":"s."));
                         break;
                     }
                 }

@@ -39,7 +39,7 @@ public class cambiopass extends HttpServlet {
         response.getWriter().print("dfsdfsgdfg");
         
         // Obtener parametros de la forma
-       /* String actual = request.getParameter("actual");
+       String actual = request.getParameter("actual");
         String nueva1 = request.getParameter("nueva1");
         String nueva2 = request.getParameter("nueva2");
         
@@ -76,7 +76,7 @@ public class cambiopass extends HttpServlet {
         // Hacer el forward del servlet
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher(url);
-            //rd.forward(request, response);*/
+            //rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

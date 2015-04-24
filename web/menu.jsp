@@ -21,39 +21,68 @@
                 </td>                   
                 <td>
                     <form action="" method="post">
-                    <input type="submit" id="click_button" value="Modificar Juegos"/>
+                    <input type="submit" id="click_button" value="Editar Perfil"/>
+                    </form>
+                </td>
+            </tr>
+            <tr id="table_row">
+                <td>
+                    <form action="nueva_categoria.jsp" method="post">
+                    <input type="submit" id="click_button" value="Nueva Clase"/>
+                    </form>
+                </td>
+                <td>
+                    <form action="nueva_pista.jsp" method="post">
+                    <input type="submit" id="click_button" value="Nueva Pista"/>
+                    </form>
+                </td>  
+            </tr>
+            <tr id="table_row">
+                <td>
+                    <form action="crear_tema.jsp" method="Post">
+                    <input type="submit" id="click_button" value="Nuevo Tema"/>
+                    </form>
+                </td>
+                <td>
+                    <form action="editar_tema.jsp" method="post">
+                        <input type="submit" id="click_button" value="Editar Tema"/>
                     </form>
                 </td>
             </tr>
             <tr id="table_row">
                 <td>
                     <form action="" method="post">
-                    <input type="submit" id="click_button" value="Nueva Categoria"/>
-                    </form
+                        <input type="submit" id="click_button" value="Editar Clase"/>
+                    </form>
                 </td>
                 <td>
-                    
-                    <input type="submit" id="click_button" value="Nueva Pista"/>
-                </td>  
-            </tr>
-            
-            <tr id="table_row">
-                <td>
-                    
-                    <input type="submit" id="click_button" value="Editar Categorias"/>
-                </td>
-                <td>
-                    
+                    <form action="" method="Post">
                     <input type="submit" id="click_button" value="Editar Pistas"/>
+                    </form>
                 </td>  
             </tr>
             <tr id="table_row">
                 <td>
-                    
-                    <input type="submit" id="click_button" value="Ir al Juego"/>
+                    <form action="tablero.jsp" method="Post">
+                        <input type="submit" id="click_button" value="Ir al Juego"/>
+                    </form>
                 </td>
                 <td>
+                    <form action="cambiarpassword" method="post">
                     <input type="submit" id="click_button" value="Cambiar contraseña"/>
+                    </form>
+                </td>  
+            </tr>
+            <tr id="table_row">
+                <td>
+                    <form action="ver_perfil.jsp" method="post">
+                    <input type="submit" id="click_button" value="Ver Perfiles"/>
+                    </form>
+                </td>
+                <td>
+                    <form action="crear_perfil.jsp" method="post">
+                    <input type="submit" id="click_button" value="Crear Perfil"/>
+                    </form>
                 </td>  
             </tr>
         </table>

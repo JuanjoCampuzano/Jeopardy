@@ -53,7 +53,7 @@ public class loginattempt extends HttpServlet {
             url="jdbc:mysql://localhost/jeopardy";
             Connection con=DriverManager.getConnection(url, "root","");
             Statement stmt=con.createStatement();
-            String query = "SELECT * FROM usuarios";
+            String query = "SELECT * FROM Usuario";
             ResultSet rs=stmt.executeQuery(query);
             while(rs.next()){
                 String un = rs.getString(1);
@@ -63,7 +63,7 @@ public class loginattempt extends HttpServlet {
                 if (att > 3){
                     session.setAttribute("loginmsg", "Esta cuenta esta bloqueda.");
                     url = "/login.jsp";
-                    query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
+                    query = "UPDATE Usuario SET failed="+att+" WHERE username='"+un+"'";
                     stmt.executeUpdate(query);
                     break;
                 }
@@ -75,12 +75,12 @@ public class loginattempt extends HttpServlet {
                         session.setAttribute("loggedIn",true);
                         session.setAttribute("username",username);
                         session.setAttribute("loginmsg","");
-                        query = "UPDATE usuarios SET failed=0 WHERE username='"+un+"'";
+                        query = "UPDATE Usuario SET failed=0 WHERE username='"+un+"'";
                         stmt.executeUpdate(query);
                         break;
                     } else {
                         // Log in fallido, incrementar el numero de intentos
-                        query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
+                        query = "UPDATE Usuario SET failed="+att+" WHERE username='"+un+"'";
                         stmt.executeUpdate(query);
                         url = "/login.jsp";
                         session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intento"+((att==1)?"":"s")+" fallido"+((att==1)?".":"s."));

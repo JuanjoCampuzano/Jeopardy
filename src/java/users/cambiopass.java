@@ -54,19 +54,16 @@ public class cambiopass extends HttpServlet {
                 url="jdbc:mysql://localhost/jeopardy";
                 Connection con=DriverManager.getConnection(url, "root","");
                 Statement stmt=con.createStatement();
-                String query = "SELECT * FROM usuarios WHERE username='"+username+"'";
+                String query = "SELECT * FROM Usuario WHERE username='"+username+"'";
                 ResultSet rs=stmt.executeQuery(query);
                 while (rs.next()){
                     // Verificar que la contraseña actual sea correcta
                     if (actual.equals(rs.getString(2))){
-                        query = "UPDATE usuarios SET password='"+nueva1+"' WHERE username='"+username+"'";
+                        query = "UPDATE Usuario SET password='"+nueva1+"' WHERE username='"+username+"'";
                         response.getWriter().print(query);
                         stmt.executeUpdate(query);
                     }
-                }
-                
-                
-                
+                }                
             } catch(Exception e){
                 System.out.println(e);
             }      

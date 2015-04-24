@@ -83,7 +83,7 @@ public class loginattempt extends HttpServlet {
                         query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
                         stmt.executeUpdate(query);
                         url = "/login.jsp";
-                        session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intentos fallido"+((att==1)?".":"s."));
+                        session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intento"+((att==1)?"":"s")+" fallido"+((att==1)?".":"s."));
                         break;
                     }
                 }

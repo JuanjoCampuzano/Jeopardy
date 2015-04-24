@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class nueva_005fpista_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class menu_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -44,11 +44,15 @@ public final class nueva_005fpista_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Jeopardy</title>\n");
+      out.write("        <!--<link type=\"text/css\" rel=\"stylesheet\" href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/document_css.css\" />-->\n");
       out.write("        <style>\n");
       out.write("            #bienvenida , #seleccion{\n");
       out.write("                color: #FFFFFF;\n");
@@ -83,17 +87,35 @@ public final class nueva_005fpista_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("        </style>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1 id='bienvenida'>Creaci&oacute;n de pista</h1>\n");
-      out.write("        <h2 id='seleccion'>favor de seleccionar en la categoria y pista(s) que quieres agregar</h2>\n");
-      out.write("        <form>\n");
-      out.write("            <select>\n");
-      out.write("                <!--Llamar a poner la lista de la base de datos-->\n");
-      out.write("            </select>\n");
-      out.write("            <input type='number' id='cantidad'/>\n");
-      out.write("            <input type='submit' value='Generar'/>\n");
-      out.write("            <input type=\"text\" value=\"pista\"/>\n");
-      out.write("                <!--Generar la cantidad de inputs que puso en cantidad-->\n");
-      out.write("        </form>\n");
+      out.write("        <h1 id=\"bienvenida\">Bienvenido a Jeopardy!</h1>\n");
+      out.write("        <h2 id=\"seleccion\">Favor de seleccionar una de las siguientes opciones</h2>\n");
+      out.write("        <table id=\"table_menu\">\n");
+      out.write("            <tr id=\"table_row\">\n");
+      out.write("                <td>\n");
+      out.write("                    <button id=\"click_button\" type=\"button\">Ver Resultados</button>\n");
+      out.write("                </td>                   \n");
+      out.write("                <td>\n");
+      out.write("                    <button id=\"click_button\" type=\"button\">Modificar Juegos</button>\n");
+      out.write("                </td>\n");
+      out.write("            </tr>\n");
+      out.write("            <tr id=\"table_row\">\n");
+      out.write("                <td>\n");
+      out.write("                    <button id=\"click_button\" type=\"button\">Nueva Categoria</button>\n");
+      out.write("                </td>\n");
+      out.write("                <td>\n");
+      out.write("                    <button id=\"click_button\" type=\"button\">Nueva Pista</button>\n");
+      out.write("                </td>  \n");
+      out.write("            </tr>\n");
+      out.write("            \n");
+      out.write("            <tr id=\"table_row\">\n");
+      out.write("                <td>\n");
+      out.write("                    <button id=\"click_button\" type=\"button\">Editar Categorias</button>\n");
+      out.write("                </td>\n");
+      out.write("                <td>\n");
+      out.write("                    <button id=\"click_button\" type=\"button\">Editar Pistas</button>\n");
+      out.write("                </td>  \n");
+      out.write("            </tr>\n");
+      out.write("        </table>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

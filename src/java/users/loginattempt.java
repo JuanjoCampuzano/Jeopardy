@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author juanjocampuzano
  */
-public class cambiopass extends HttpServlet {
+public class loginattempt extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,47 +36,54 @@ public class cambiopass extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().print("dfsdfsgdfg");
-        
+                
         // Obtener parametros de la forma
-       /* String actual = request.getParameter("actual");
-        String nueva1 = request.getParameter("nueva1");
-        String nueva2 = request.getParameter("nueva2");
-        
-        // Declarar sesion y obtener usuario en activo
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+       
+        // Crear sesion, asumir que no se hizo log in exitoso
         HttpSession session = request.getSession();
-        String username = "q";//(String)session.getAttribute("username");
-        String url="/menu.jsp";
+        session.setAttribute("loggedIn",false);
+        String url="/login.jsp";
         
-        // Validar que la password sea igual en ambos casos
-        if (nueva1.equals(nueva2) && username!=null){
-            try {
-                // Crear conexion para obtener datos de usuarios
-                url="jdbc:mysql://localhost/jeopardy";
-                Connection con=DriverManager.getConnection(url, "root","");
-                Statement stmt=con.createStatement();
-                String query = "SELECT * FROM usuarios WHERE username='"+username+"'";
-                ResultSet rs=stmt.executeQuery(query);
-                while (rs.next()){
-                    // Verificar que la contraseña actual sea correcta
-                    if (actual.equals(rs.getString(2))){
-                        query = "UPDATE usuarios SET password='"+nueva1+"' WHERE username='"+username+"'";
-                        response.getWriter().print(query);
-                        stmt.executeQuery(query);
+        try{
+            // Realizar conexion a la base de datos y extraer datos de usuarios
+            url="jdbc:mysql://localhost/jeopardy";
+            Connection con=DriverManager.getConnection(url, "root","");
+            Statement stmt=con.createStatement();
+            String query = "SELECT * FROM usuarios";
+            ResultSet rs=stmt.executeQuery(query);
+            while(rs.next()){
+                String un = rs.getString(1);
+                String pw = rs.getString(2);
+                int att = rs.getInt(3) + 1;
+                // Comaprar parametros de forma con datos de la tabla
+                if (un.equals(username)){
+                    if (pw.equals(password)){
+                        // Log in exitoso
+                        url = "/tablero.jsp";
+                        session.setAttribute("loggedIn",true);
+                        session.setAttribute("username",username);
+                        break;
+                    } else {
+                        // Log in fallido, incrementar el numero de intentos
+                        query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
+                        stmt.executeUpdate(query);
+                        url = "/login.jsp";
+                        session.setAttribute("loginmsg", "Password incorrecto");
+                        break;
                     }
                 }
-                
-                
-                
-            } catch(Exception e){
-                System.out.println(e);
-            }      
+            }
+            
+	} catch(Exception e){
+            System.out.println(e);
 	}
-        url ="/index.html";
         // Hacer el forward del servlet
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher(url);
-            //rd.forward(request, response);*/
+            rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

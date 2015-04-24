@@ -36,8 +36,7 @@ public class cambiopass extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().print("dfsdfsgdfg");
-        
+       
         // Obtener parametros de la forma
        String actual = request.getParameter("actual");
         String nueva1 = request.getParameter("nueva1");
@@ -72,7 +71,7 @@ public class cambiopass extends HttpServlet {
                 System.out.println(e);
             }      
 	}
-        url ="/login.jsp";
+        url ="/menu.jsp";
         // Hacer el forward del servlet
             ServletContext sc = getServletContext();
             RequestDispatcher rd = sc.getRequestDispatcher(url);

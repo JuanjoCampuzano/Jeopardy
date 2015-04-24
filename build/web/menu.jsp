@@ -15,29 +15,48 @@
         <table id="table_menu">
             <tr id="table_row">
                 <td>
-                    <button id="click_button" type="button">Ver Resultados</button>
+                    <form action="ver_resultados.jsp" method="post">
+                    <input type="submit" id="click_button" value="Ver Resultados"/>
+                    </form>
                 </td>                   
                 <td>
-                    <button id="click_button" type="button">Modificar Juegos</button>
+                    <form action="" method="post">
+                    <input type="submit" id="click_button" value="Modificar Juegos"/>
+                    </form>
                 </td>
             </tr>
             <tr id="table_row">
                 <td>
-                    <button id="click_button" type="button">Nueva Categoria</button>
+                    <form action="" method="post">
+                    <input type="submit" id="click_button" value="Nueva Categoria"/>
+                    </form
                 </td>
                 <td>
-                    <button id="click_button" type="button">Nueva Pista</button>
+                    
+                    <input type="submit" id="click_button" value="Nueva Pista"/>
                 </td>  
             </tr>
             
             <tr id="table_row">
                 <td>
-                    <button id="click_button" type="button">Editar Categorias</button>
+                    
+                    <input type="submit" id="click_button" value="Editar Categorias"/>
                 </td>
                 <td>
-                    <button id="click_button" type="button">Editar Pistas</button>
+                    
+                    <input type="submit" id="click_button" value="Editar Pistas"/>
+                </td>  
+            </tr>
+            <tr id="table_row">
+                <td>
+                    
+                    <input type="submit" id="click_button" value="Ir al Juego"/>
+                </td>
+                <td>
+                    <input type="submit" id="click_button" value="Cambiar contraseña"/>
                 </td>  
             </tr>
         </table>
+       </form>
     </body>
 </html>

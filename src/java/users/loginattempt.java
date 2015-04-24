@@ -61,7 +61,7 @@ public class loginattempt extends HttpServlet {
                 if (un.equals(username)){
                     if (pw.equals(password)){
                         // Log in exitoso
-                        url = "/tablero.jsp";
+                        url = "/menu.jsp";
                         session.setAttribute("loggedIn",true);
                         session.setAttribute("username",username);
                         break;

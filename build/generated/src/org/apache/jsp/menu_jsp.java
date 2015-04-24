@@ -11,11 +11,6 @@ public final class menu_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
-  static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
-    _jspx_dependants.add("/header.jsp");
-  }
-
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
@@ -52,19 +47,45 @@ public final class menu_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
-      out.write("    ");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Jeopardy</title>\n");
-      out.write("        <link type=\"text/css\" rel=\"stylesheet\" href=\"document_css.css\" />\n");
-      out.write("    </head>\n");
-      out.write("</html>\n");
+      out.write("        <!--<link type=\"text/css\" rel=\"stylesheet\" href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/document_css.css\" />-->\n");
+      out.write("        <style>\n");
+      out.write("            #bienvenida , #seleccion{\n");
+      out.write("                color: #FFFFFF;\n");
+      out.write("                font-family:Arial;\n");
+      out.write("                font-size: 20px;\n");
+      out.write("                text-align: center;\n");
+      out.write("            }\n");
       out.write("\n");
+      out.write("            #table_menu{\n");
+      out.write("               margin: 0px auto;\n");
+      out.write("               text-align: center;\n");
+      out.write("              \n");
+      out.write("            }\n");
+      out.write("            td{\n");
+      out.write("                padding: 30px;\n");
+      out.write("            }\n");
+      out.write("            body{\n");
+      out.write("                background: #060CE9;\n");
+      out.write("            }\n");
+      out.write("            #click_button{\n");
+      out.write("                width:500px;\n");
+      out.write("                background: #FFFFFF; \n");
+      out.write("                padding: 8px 14px 10px; \n");
+      out.write("                border:3px solid #000000; \n");
+      out.write("                cursor:pointer; \n");
+      out.write("                font-family:sans-serif; \n");
+      out.write("                letter-spacing:1px;\n");
+      out.write("                text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.3); \n");
+      out.write("                color: #000000;\n");
+      out.write("                border-radius: 10px; \n");
+      out.write("            }\n");
+      out.write("        </style>\n");
+      out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <h1 id=\"bienvenida\">Bienvenido a Jeopardy!</h1>\n");
       out.write("        <h2 id=\"seleccion\">Favor de seleccionar una de las siguientes opciones</h2>\n");

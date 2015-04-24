@@ -10,7 +10,7 @@
     <%@include file="header.jsp"%>
     <body>
         <h1 id='bienvenida'>Creaci&oacute;n de pista</h1>
-        <h2 id='seleccion'>favor de seleccionar en la categoria y pista(s) que quieres agregar</h2>
+        <h2 id='seleccion'>favor de seleccionar la clase, tema  y pista que quieres agregar</h2>
         <form>
             <select>
                 <!--Llamar a poner la lista de la base de datos-->

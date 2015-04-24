@@ -60,7 +60,7 @@ public class loginattempt extends HttpServlet {
                 String pw = rs.getString(2);
                 int att = rs.getInt(3) + 1;
                 // Verificar que la cuenta no este bloqueda
-                if (att >= 4){
+                if (att > 3){
                     session.setAttribute("loginmsg", "Esta cuenta esta bloqueda.");
                     url = "/login.jsp";
                     query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
@@ -83,7 +83,7 @@ public class loginattempt extends HttpServlet {
                         query = "UPDATE usuarios SET failed="+att+" WHERE username='"+un+"'";
                         stmt.executeUpdate(query);
                         url = "/login.jsp";
-                        session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intentos fallidos.");
+                        session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intentos fallido"+((att==1)?".":"s."));
                         break;
                     }
                 }

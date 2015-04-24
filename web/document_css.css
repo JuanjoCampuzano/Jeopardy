@@ -43,14 +43,20 @@ and open the template in the editor.
         border:solid;
         border-width:10px;
         border-color:#101010;
+        margin: 0px auto;
     }
     
+/*    #body_juego{
+        background: #FFFFFF;
+    }
+    */
     #header_juego{
          color: yellow; 
         background-color: blue; 
         font-size: 40px; 
         font-family: "Helvetica";
         padding: 15px;
+        
     }
     
     #juego_valor {

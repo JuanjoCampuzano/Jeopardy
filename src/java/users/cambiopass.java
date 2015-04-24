@@ -62,7 +62,7 @@ public class cambiopass extends HttpServlet {
                     if (actual.equals(rs.getString(2))){
                         query = "UPDATE usuarios SET password='"+nueva1+"' WHERE username='"+username+"'";
                         response.getWriter().print(query);
-                        stmt.executeQuery(query);
+                        stmt.executeUpdate(query);
                     }
                 }
                 

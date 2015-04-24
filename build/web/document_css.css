@@ -8,12 +8,12 @@ and open the template in the editor.
     Author     : AlejandroSanchez
 */
 
- #bienvenida , #seleccion{
+    #bienvenida , #seleccion{
         color: #FFFFFF;
         font-family:Arial;
         font-size: 20px;
         text-align: center;
-   }
+    }
 
     #table_menu{
        margin: 0px auto;
@@ -32,9 +32,33 @@ and open the template in the editor.
         padding: 8px 14px 10px; 
         border:3px solid #000000; 
         cursor:pointer; 
-        font-family:Oswald, sans-serif; 
-        letter-spacing:.1em;
+        font-family:sans-serif; 
+        letter-spacing:1px;
         text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.3); 
         color: #000000;
         border-radius: 10px; 
     }
+    
+    #table_juego{
+        border:solid;
+        border-width:10px;
+        border-color:#101010;
+    }
+    
+    #header_juego{
+         color: yellow; 
+        background-color: blue; 
+        font-size: 40px; 
+        font-family: "Helvetica";
+        padding: 15px;
+    }
+    
+    #juego_valor {
+        color: yellow; 
+        background-color: blue; 
+        font-size: 40px; 
+        font-family: "Helvetica";
+        padding: 15px;
+    }
+    #juego_valor:hover {background-color: #507FFF;}
+    #juego_valor:active {color:orangered;}

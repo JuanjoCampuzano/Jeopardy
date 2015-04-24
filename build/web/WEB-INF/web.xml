@@ -24,6 +24,9 @@
         <servlet-name>loginattempt</servlet-name>
         <url-pattern>/loginattempt</url-pattern>
     </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
     <session-config>
         <session-timeout>
             30

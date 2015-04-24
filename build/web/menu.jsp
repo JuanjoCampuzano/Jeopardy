@@ -20,7 +20,7 @@
                     </form>
                 </td>                   
                 <td>
-                    <form action="" method="post">
+                    <form action="modificar_perfil.jsp" method="post">
                     <input type="submit" id="click_button" value="Modificar Perfil"/>
                     </form>
                 </td>
@@ -40,12 +40,12 @@
             
             <tr id="table_row">
                 <td>
-                    <form action="" method="post">
+                    <form action="editar_categoria.jsp" method="post">
                     <input type="submit" id="click_button" value="Editar Categorias"/>
                     </form>
                 </td>
                 <td>
-                    <form action="" method="post">
+                    <form action="editar_pista.jsp" method="post">
                     <input type="submit" id="click_button" value="Editar Pistas"/>
                     </form>
                 </td>  

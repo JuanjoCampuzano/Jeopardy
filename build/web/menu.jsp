@@ -75,13 +75,13 @@
             </tr>
             <tr id="table_row">
                 <td>
-                    <form action="ver_perfil.jsp" method="post">
+                    <form action="ver_perfil.jsp" method="get">
                     <input type="submit" id="click_button" value="Ver Perfiles"/>
                     </form>
                 </td>
                 <td>
-                    <form action="crear_perfil.jsp" method="post">
-                    <input type="submit" id="click_button" value="Crear Perfil"/>
+                    <form action="nuevo_perfil.jsp" method="get">
+                    <input type="submit" id="click_button" value="Nuevo Perfil"/>
                     </form>
                 </td>  
             </tr>

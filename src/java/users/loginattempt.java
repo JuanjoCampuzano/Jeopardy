@@ -6,7 +6,6 @@
 package users;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -36,68 +35,64 @@ public class loginattempt extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+
         // Obtener parametros de la forma
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-       
+
         // Crear sesion, asumir que no se hizo log in exitoso
         HttpSession session = request.getSession();
-        session.setAttribute("loggedIn",false);
-        session.setAttribute("loginmsg","");
-        String url="/login.jsp";
+        session.setAttribute("loggedIn", false);
+        session.setAttribute("loginmsg", "");
+        String url = "/login.jsp";
         
-   
-        try{
+        try {
             // Realizar conexion a la base de datos y extraer datos de usuarios
-            String dburl="jdbc:mysql://localhost/jeopardy";
-            Connection con=DriverManager.getConnection(dburl, "root","");
-            Statement stmt=con.createStatement();
-            String query = "SELECT * FROM Usuario";
-            ResultSet rs=stmt.executeQuery(query);
-            while(rs.next()){
-                String un = rs.getString(1);
-                String pw = rs.getString(2);
-                int att = rs.getInt(3) + 1;
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jeopardy", "root", "");
+            Statement stmt = con.createStatement();
+            String query = "SELECT password, failed FROM Usuario WHERE username = '" + username + "'";
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next()) {
+                String realPassword = rs.getString(1);
+                int attempts = rs.getInt(2);
+
                 // Verificar que la cuenta no este bloqueda
-                if (att > 3){
+                if (attempts == 3) {
                     session.setAttribute("loginmsg", "Esta cuenta esta bloqueda.");
                     url = "/login.jsp";
-                    query = "UPDATE Usuario SET failed="+att+" WHERE username='"+un+"'";
-                    stmt.executeUpdate(query);
-                    break;
                 }
+
                 // Comaprar parametros de forma con datos de la tabla
-                if (un.equals(username)){
-                    if (pw.equals(password)){
-                        // Log in exitoso
-                        url = "/menu.jsp";
-                        session.setAttribute("loggedIn",true);
-                        session.setAttribute("username",username);
-                        session.setAttribute("loginmsg","");
-                        query = "UPDATE Usuario SET failed=0 WHERE username='"+un+"'";
-                        stmt.executeUpdate(query);
-                        break;
-                    } else {
-                        // Log in fallido, incrementar el numero de intentos
-                        query = "UPDATE Usuario SET failed="+att+" WHERE username='"+un+"'";
-                        stmt.executeUpdate(query);
-                        url = "/login.jsp";
-                        session.setAttribute("loginmsg", "Password incorrecto. Llevas "+att+" intento"+((att==1)?"":"s")+" fallido"+((att==1)?".":"s."));
-                        break;
-                    }
+                if (realPassword.equals(password)) {
+                    // Log in exitoso
+                    url = "/menu.jsp";
+                    session.setAttribute("loggedIn", true);
+                    session.setAttribute("username", username);
+                    session.setAttribute("loginmsg", "");
+                    query = "UPDATE Usuario SET failed = 0 WHERE username = '" + username + "'";
+                    stmt.executeUpdate(query);
+                } else {
+                    // Log in fallido, incrementar el numero de intentos
+                    query = "UPDATE Usuario SET failed=" + attempts + 1 + " WHERE username='" + username + "'";
+                    stmt.executeUpdate(query);
+                    url = "/login.jsp";
+                    session.setAttribute("loginmsg", "Password incorrecto. Llevas " + attempts + 1 + " intento" + ((attempts == 0) ? "" : "s") + " fallido" + ((attempts == 0) ? "." : "s."));
                 }
+            } else {
+                session.setAttribute("loginmsg", "No existe este usuario.");
+                url = "/login.jsp";
             }
-            
-	} catch(Exception e){
+
+        } catch (Exception e) {
             System.out.println(e);
-	}
+        }
 
         // Hacer el forward del servlet
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
         rd.forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

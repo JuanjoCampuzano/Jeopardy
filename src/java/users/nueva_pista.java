@@ -11,10 +11,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,25 +36,41 @@ public class nueva_pista extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String url;
-       
-       try{
-            // Realizar conexion a la base de datos y extraer datos de usuarios
-            url="jdbc:mysql://localhost/jeopardy";
-            Connection con=DriverManager.getConnection(url, "root","");
-            Statement stmt=con.createStatement();
-            String query = "SELECT * FROM clase";
-            ResultSet rs=stmt.executeQuery(query);
-            while(rs.next()){
-                
+
+        HttpSession session = request.getSession();
+
+        String pregunta = request.getParameter("preguta");
+        String respuesta = request.getParameter("respuesta");
+        int dificultad = Integer.parseInt(request.getParameter("dificultad"));
+        String tema = request.getParameter("tema");
+        String url = "menu.jsp";
+
+        try {
+            // Realizar conexion a la base de datos y extraer datos de usuario
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("select id from tema where nombre = '" + tema + "'");
+
+            if (rs.next()) {
+                stmt.executeQuery("insert into Pista (pregunta, respuesta, difficulty, id_tema) values ('" + pregunta + "', '" + respuesta + "', " + dificultad + ", " + rs.getInt(4) + ")");
+            } else {
+                session.setAttribute("crearPistaMsg", "No existe este tema.");
+                url = "/nueva_pista.jsp";
             }
-            
-       }catch(Exception e){
+
+        } catch (Exception e) {
             System.out.println(e);
         }
-    
+
+        ServletContext sc = getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(url);
+        rd.forward(request, response);
+        
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

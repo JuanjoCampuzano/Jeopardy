@@ -1,11 +1,12 @@
-<%-- 
-    Document   : editar_perfil
-    Created on : Apr 24, 2015, 5:35:10 PM
-    Author     : AlejandroSanchez
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<%@include file="header.jsp" %>
-    <h1>Hello World!</h1>
-<%@include file="footer.jsp" %>
+<%@page contentType="text/xml" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<temas>
+<%
+    List<String> temas = (List<String>) session.getAttribute("temas");
+    for (String tema: temas) {
+        %>
+        <tema nombre="<%out.println(tema);%>"></tema>
+        <%
+    }
+%>
+</temas>

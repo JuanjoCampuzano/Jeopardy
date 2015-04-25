@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>nueva_pista</servlet-name>
-        <servlet-class>users.nueva_pista</servlet-class>
+        <servlet-class>Juego.nueva_pista</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginattempt</servlet-name>

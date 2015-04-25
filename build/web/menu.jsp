@@ -39,7 +39,7 @@
             </tr>
             <tr id="table_row">
                 <td>
-                    <form action="crear_tema.jsp" method="get">
+                    <form action="nuevo_tema.jsp" method="get">
                     <input type="submit" id="click_button" value="Nuevo Tema"/>
                     </form>
                 </td>

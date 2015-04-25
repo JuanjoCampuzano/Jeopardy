@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package users;
+package Juego;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +14,7 @@ import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,9 +22,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author AlejandroSanchez
+ * @author alfredo_altamirano
  */
-public class nueva_pista extends HttpServlet {
+@WebServlet(name = "nueva_clase", urlPatterns = {"/nueva_clase"})
+public class nueva_clase extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,29 +38,26 @@ public class nueva_pista extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String nombre = request.getParameter("nombre");
         HttpSession session = request.getSession();
-
-        String pregunta = request.getParameter("preguta");
-        String respuesta = request.getParameter("respuesta");
-        int dificultad = Integer.parseInt(request.getParameter("dificultad"));
-        String tema = request.getParameter("tema");
-        String url = "menu.jsp";
-
+        String url = "/menu.jsp";
+        
+        session.setAttribute("error_crear_pista", null);
+        
         try {
-            // Realizar conexion a la base de datos y extraer datos de usuario
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
             Statement stmt = con.createStatement();
-
-            ResultSet rs = stmt.executeQuery("select id from tema where nombre = '" + tema + "'");
-
+            
+            ResultSet rs = stmt.executeQuery("select count(*) from Clase where nombre = '" + nombre + "'");
             if (rs.next()) {
-                stmt.executeQuery("insert into Pista (pregunta, respuesta, difficulty, id_tema) values ('" + pregunta + "', '" + respuesta + "', " + dificultad + ", " + rs.getInt(4) + ")");
-            } else {
-                session.setAttribute("crearPistaMsg", "No existe este tema.");
-                url = "/nueva_pista.jsp";
+                if (rs.getInt(1) != 0) {
+                    session.setAttribute("error_crear_pista", "Ya existe una pista con ese nombre.");
+                    url = "/nueva_pista.jsp";
+                } else {
+                    stmt.executeUpdate("insert into Clase (nombre) values ('" + nombre + "');");
+                }
             }
-
+            
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -66,11 +65,9 @@ public class nueva_pista extends HttpServlet {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
         rd.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *

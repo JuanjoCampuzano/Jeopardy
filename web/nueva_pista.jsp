@@ -1,11 +1,60 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="header.jsp" %>
-<form>
-First name:<br>
-<input type="text" name="firstname">
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: 'getclases',
+            type: 'GET', 
+            dataType: 'xml',
+            success: function(returnedXMLResponse){
+                $('#clases').append('<option id="noselection" value="">-</option>\n');
+                $('clase', returnedXMLResponse).each(function () {
+                    var nombre = $(this).attr('nombre');
+                    $('#clases').append('<option value="' + nombre + '">' + nombre + '</option>\n');
+                });
+            }  
+        });
+        
+        var first = true;
+        
+        $('#clases').change(function (e) {
+            if (first) {
+                $('#temasDiv').append('Temas<select id="temas" name="tema"></select><br>');
+                $('#noselection').remove();
+                first = false;
+            }
+            $.ajax({
+                url: 'gettemas?clase=' + $('#clases').val(),
+                type: 'GET',
+                dataType: 'xml',
+                success: function(returnedXMLResponse){
+                    $('#temas').html('');
+                    $('tema', returnedXMLResponse).each(function () {
+                        var nombre = $(this).attr('nombre');
+                        $('#temas').append('<option value="' + nombre + '">' + nombre + '</option>\n');
+                    });
+                }  
+            });
+        });
+    });
+     
+</script>
+<form id="forma" action="nueva_pista" method="post">
+    Clase:
+    <select id="clases" name="clase">
+    </select>
 <br>
-Last name:<br>
-<input type="text" name="lastname">
+<div id="temasDiv"></div>
+Pregunta:<input type="text" name="pregunta"><br>
+Respuesta:<input type="text" name="respuesta"><br>
+Puntos:<select name="dificultad">
+    <option value="200">200</option>
+    <option value="400">400</option>
+    <option value="600">600</option>
+    <option value="800">800</option>
+    <option value="1000">1000</option>
+</select><br>
+<input type="submit">
 </form>
 <%@include file="footer.jsp" %>

@@ -41,21 +41,27 @@ public class nueva_pista extends HttpServlet {
 
         String pregunta = request.getParameter("pregunta");
         String respuesta = request.getParameter("respuesta");
-        int dificultad = Integer.parseInt(request.getParameter("dificultad"));
+        int dificultad = Integer.parseInt(request.getParameter("dificultad"))/200 - 1;
         String tema = request.getParameter("tema");
-        String url = "menu.jsp";
+        String clase = request.getParameter("clase");
+        String url = "/menu.jsp";
 
         try {
-            // Realizar conexion a la base de datos y extraer datos de usuario
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
             Statement stmt = con.createStatement();
-
-            ResultSet rs = stmt.executeQuery("select id from tema where nombre = '" + tema + "'");
-
+            ResultSet rs = stmt.executeQuery("select id from Clase where nombre = '" + clase + "'");
             if (rs.next()) {
-                stmt.executeQuery("insert into Pista (pregunta, respuesta, difficulty, id_tema) values ('" + pregunta + "', '" + respuesta + "', " + dificultad + ", " + rs.getInt(4) + ")");
+                int idClase = rs.getInt(1);
+                rs = stmt.executeQuery("select id from Tema where nombre = '" + tema + "' and id_clase = " + idClase);
+                if (rs.next()) {
+                    int idTema = rs.getInt(1);
+                    stmt.executeUpdate("insert into Pista (pregunta, respuesta, difficulty, id_tema) values ('" + pregunta + "', '" + respuesta + "', " + dificultad + ", " + idTema + ")");
+                } else {
+                    session.setAttribute("error_crear_pista", "No existe ese tema.");
+                    url = "/nueva_pista.jsp";
+                }
             } else {
-                session.setAttribute("crearPistaMsg", "No existe este tema.");
+                session.setAttribute("error_crear_pista", "No existe esa clase.");
                 url = "/nueva_pista.jsp";
             }
 
@@ -66,11 +72,10 @@ public class nueva_pista extends HttpServlet {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
         rd.forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *

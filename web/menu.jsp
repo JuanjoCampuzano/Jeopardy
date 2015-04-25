@@ -32,7 +32,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="nueva_pista" method="get">
+                    <form action="nueva_pista.jsp" method="get">
                     <input type="submit" id="click_button" value="Nueva Pista"/>
                     </form>
                 </td>  

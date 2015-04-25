@@ -1,12 +1,12 @@
-
+create schema Jeopardy;
 use Jeopardy;
 
 create table Usuario (
 	id mediumint not null auto_increment,
 	username varchar(100) not null,
 	password varchar(100) not null,
-	failed tinyint default 0 check (difficulty in (0, 1, 2, 3)),
-	password_changed bool default false,
+	failed tinyint not null default 0 check (difficulty in (0, 1, 2, 3)),
+	password_changed bool not null default false,
 	primary key(id)
 );
 
@@ -41,6 +41,14 @@ create table Perfil (
 	primary key(id),
 	foreign key(id_usuario) references Usuario(id),
 	foreign key(id_clase) references Clase(id)
+);
+
+create table Pistas_Perfiles (
+	id_Perfil mediumint not null,
+	id_Pista mediumint not null,
+	primary key(id_Perfil, id_Pista),
+	foreign key(id_Perfil) references Perfil(id),
+	foreign key(id_pista) references Pista(id)
 );
 
 create table Juego (

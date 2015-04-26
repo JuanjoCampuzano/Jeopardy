@@ -46,9 +46,12 @@ create table Perfil (
 create table Pistas_Perfiles (
 	id_Perfil mediumint not null,
 	id_Pista mediumint not null,
-	primary key(id_Perfil, id_Pista),
+	id_Tema mediumint not null,
+	col tinyint not null check (col in (0, 1, 2, 3, 4)),
+	primary key(id_Perfil, id_Pista, col),
 	foreign key(id_Perfil) references Perfil(id),
-	foreign key(id_pista) references Pista(id)
+	foreign key(id_pista) references Pista(id),
+	foreign key(id_Tema) references Tema(id)
 );
 
 create table Juego (
@@ -73,6 +76,7 @@ create table Resultados (
 	foreign key(id_juego) references Juego(id),
 	foreign key(id_alumno) references Alumno(id)
 );
+
 
 
 

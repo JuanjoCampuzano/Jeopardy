@@ -18,31 +18,36 @@
         
         var first = true;
         
-        var temaSelected = function (clase, tema) {
-            
+        temaChanged = function (index) {
             $.ajax({
-                url: 'getpistas?clase=' + clase.trim() + '&tema=' + tema,
+                url: 'getpistas?clase=' + $('#clases').val().trim() + '&tema=' + $('#tema' + index).val(),
                 type: 'GET',
                 dataType: 'xml',
                 success: function(returnedXMLResponse){
-                    var divid = 'divpistas' + clase + tema;
-                    divid = divid.replace(/\s+/g, '_');
-                    alert(divid);
+                    for (var i = 0; i < 5; i++) {
+                        $('#pregunta' + i + index).html('');
+                    }
                     $('pista', returnedXMLResponse).each(function () {
                         var pregunta = $(this).attr('pregunta');
-                        alert(pregunta);
-                        var dificultad = $(this).attr('dificultad');
-                        $('#' + divid).append('<input type="checkbox">' + pregunta + '<br>\n');
+                        var dificultad = $(this).attr('dificultad')/200-1;
+                        $('#pregunta' + dificultad + index).append('<option value="' + pregunta + '">' + pregunta + '</option>\n');
                     });
                 }  
             });
         };
         
-        $('#clases').change(function (e) {
+        $('#clases').change(function () {
             if (first) {
                 $('#noselection').remove();
                 first = false;
             }
+            
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 5; j++) {
+                    $('#pregunta' + i + j).html('');
+                }
+            }
+            
             $.ajax({
                 url: 'gettemas?clase=' + $('#clases').val(),
                 type: 'GET',
@@ -50,6 +55,9 @@
                 success: function(returnedXMLResponse){
                     for (var i = 0; i < 5; i++) {
                         $('#tema' + i).html('');
+                    }
+                    for (var i = 0; i < 5; i++) {
+                        $('#tema' + i).append('<option value="-">-</option>\n');
                     }
                     $('tema', returnedXMLResponse).each(function () {
                         var nombre = $(this).attr('nombre');
@@ -63,7 +71,7 @@
     });
      
 </script>
-<form action="nuevo_tema" method="post">
+<form action="nuevo_perfil" method="post">
     Clase:
     <select id="clases" name="clase">
     </select>
@@ -71,7 +79,7 @@
         <tr>
             <%
                 for(int i = 0; i < 5; i++) { 
-                    out.println("<th><select id=\"tema" + i + "\" name=\"tema" + i + "\"></select></th>");
+                    out.println("<th><select onchange=\"temaChanged(" + i + ")\" id=\"tema" + i + "\" name=\"tema" + i + "\"></select></th>");
                 }
             %>
         </tr>

@@ -75,7 +75,7 @@
             </tr>
             <tr id="table_row">
                 <td>
-                    <form action="ver_perfil.jsp" method="get">
+                    <form action="verperfiles" method="get">
                     <input type="submit" id="click_button" value="Ver Perfiles"/>
                     </form>
                 </td>

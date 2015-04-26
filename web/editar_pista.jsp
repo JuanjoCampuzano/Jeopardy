@@ -1,8 +1,13 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- 
+    Document   : editar_tema
+    Created on : Apr 25, 2015, 7:01:17 PM
+    Author     : AlejandroSanchez
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
 <script type="text/javascript">
-    $(document).ready(function () {
+ $(document).ready(function () {
         $.ajax({
             url: 'getclases',
             type: 'GET', 
@@ -38,36 +43,38 @@
             });
         });
         
-        function validacion(){
-            var pregunta = document.forms["nueva"]["pregunta"].value;
-            if(pregunta ==="" || pregunta === null){
-                return false;
-            }else{
-                var respuesta = document.forms["nueva"]["respuesta"].value;
-                if(respuesta === "" || respuesta === null){
-                    return false;
-                }
+        $('#temas').change(function (e) {
+            if (first) {
+                $('#pistasDiv').append('Pistas<select id="pistas" name="pista"></select><br>');
+                $('#noselection').remove();
+                first = false;
             }
-        }
+            $.ajax({
+                url: 'getpistas?clase=' + $('#clases').val() + '&' + 'tema=' + $('#tema').val(),
+                type: 'GET',
+                dataType: 'xml',
+                success: function(returnedXMLResponse){
+                    $('#pistas').html('');
+                    $('pista', returnedXMLResponse).each(function () {
+                        var nombre = $(this).attr('pregunta');
+                        $('#pistas').append('<option value="' + nombre + '">' + nombre + '</option>\n');
+                    });
+                }  
+            });
+        });
         
-    });
+ });
      
-</script>
-<form id="forma" action="nueva_pista" name="nueva" method="post">
+ </script>
+<form id="forma" action="editar_pista" method="post">
     Clase:
     <select id="clases" name="clase">
     </select>
 <br>
 <div id="temasDiv"></div>
-Pregunta:<input type="text" name="pregunta"><br>
-Respuesta:<input type="text" name="respuesta"><br>
-Puntos:<select name="dificultad">
-    <option value="200">200</option>
-    <option value="400">400</option>
-    <option value="600">600</option>
-    <option value="800">800</option>
-    <option value="1000">1000</option>
-</select><br>
-<input type="submit" onclick="return valudacion()">
+<div id="pistasDiv"></div>
+Nombre nuevo de pista: <input type="text" name="nueva_pista">
+<br>
+<input type="submit" id="click">
 </form>
 <%@include file="footer.jsp" %>

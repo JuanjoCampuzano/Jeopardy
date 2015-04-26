@@ -14,15 +14,22 @@
                 });
             }  
         });
-    })
+    function validacion(){
+         var valor = document.forms["nueva"]["tema"].value;
+         if(valor === "" || valor === null){
+             return false;
+         }
+     }
+        
+    });
      
 </script>
-<form action="nuevo_tema" method="post">
+<form action="nuevo_tema" name="nueva" method="post">
     Clase:
     <select id="clases" name="clase">
     </select>
 <br>
 Tema: <input type="text" name="tema"><br>
-<input type="submit">
+<input type="submit" onclick="return validacion()">
 </form>
 <%@include file="footer.jsp" %>

@@ -1,8 +1,13 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- 
+    Document   : editar_pista
+    Created on : Apr 25, 2015, 7:21:04 PM
+    Author     : AlejandroSanchez
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
 <script type="text/javascript">
-    $(document).ready(function () {
+ $(document).ready(function () {
         $.ajax({
             url: 'getclases',
             type: 'GET', 
@@ -38,36 +43,27 @@
             });
         });
         
-        function validacion(){
-            var pregunta = document.forms["nueva"]["pregunta"].value;
-            if(pregunta ==="" || pregunta === null){
-                return false;
-            }else{
-                var respuesta = document.forms["nueva"]["respuesta"].value;
-                if(respuesta === "" || respuesta === null){
-                    return false;
-                }
-            }
-        }
+     function validacion(){
+      var checkNuevo_tema = document.forms["editar"]["nuevo_tema"].value;
+        //Para testing 
+        alert(checkNuevo_tema.value);
+        if(checkNuevo_tema === "" || checkNueva_clase === null){
+          alert("Favor de poner el nombre nuevo de la clase");
+          return false;
+       }
+    }
         
-    });
+ });
      
-</script>
-<form id="forma" action="nueva_pista" name="nueva" method="post">
+ </script>
+<form id="forma" action="editar_tema" name="editar" method="post">
     Clase:
     <select id="clases" name="clase">
     </select>
 <br>
 <div id="temasDiv"></div>
-Pregunta:<input type="text" name="pregunta"><br>
-Respuesta:<input type="text" name="respuesta"><br>
-Puntos:<select name="dificultad">
-    <option value="200">200</option>
-    <option value="400">400</option>
-    <option value="600">600</option>
-    <option value="800">800</option>
-    <option value="1000">1000</option>
-</select><br>
-<input type="submit" onclick="return valudacion()">
+Nombre Nuevo: <input type="text" name="nuevo_tema">
+<br>
+<input type="submit" onclick="return validacion()" id="click">
 </form>
 <%@include file="footer.jsp" %>

@@ -63,7 +63,8 @@
             </tr>
             <tr id="table_row">
                 <td>
-                    <form action="tablero.jsp" method="get">
+                    <form action="verperfiles" method="get">
+                        <input type="hidden" name="jugar" value="true" />
                         <input type="submit" id="click_button" value="Ir al Juego"/>
                     </form>
                 </td>

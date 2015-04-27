@@ -37,10 +37,23 @@
                 }  
             });
         });
+        
+        function validacion(){
+            var pregunta = document.forms["nueva"]["pregunta"].value;
+            if(pregunta ==="" || pregunta === null){
+                return false;
+            }else{
+                var respuesta = document.forms["nueva"]["respuesta"].value;
+                if(respuesta === "" || respuesta === null){
+                    return false;
+                }
+            }
+        }
+        
     });
      
 </script>
-<form id="forma" action="nueva_pista" method="post">
+<form id="forma" action="nueva_pista" name="nueva" method="post">
     Clase:
     <select id="clases" name="clase">
     </select>
@@ -55,6 +68,6 @@ Puntos:<select name="dificultad">
     <option value="800">800</option>
     <option value="1000">1000</option>
 </select><br>
-<input type="submit">
+<input type="submit" onclick="return valudacion()">
 </form>
 <%@include file="footer.jsp" %>

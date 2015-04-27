@@ -36,7 +36,15 @@
                     <%
                 }
                 %>
-            </table><br>
+            </table>
+            <%
+            if (request.getParameter("jugar") != null) {
+            %>
+            <input type="button" value="Jugar" onclick="window.location = 'jugar?perfil=<%=perfiles.get(i).id%>'">
+            <%
+            }
+            %>
+            <br>
         <%      
     }
 %>

@@ -41,20 +41,20 @@
             });
         }
     </script>
-        <h1>Juega Jeopardy!</h1>
-        <table>
+        <h1 id="titulo">Juega Jeopardy!</h1>
+        <table id="table_juego">
             <%
                 final int ROWS = 5, COLUMNS = 5;
                 for (int i = 0; i < COLUMNS; i++) {
                     %>
-                    <th><%=perfil.temas.get(i)%></th>
+                    <th class="header_juego"><%=perfil.temas.get(i)%></th>
                     <%
                 }
                 
                 for (int i = 0; i < COLUMNS; i++) {
                     %><tr><%
                         for (int j = 0; j < ROWS; j++) {
-                            out.println("<td id=\"celda" + i + j + "\" onclick=\"clickPregunta('" + perfil.pistas.get(j).get(i).pregunta + "', '" + perfil.pistas.get(j).get(i).respuesta + "', " + perfil.pistas.get(j).get(i).dificultad + ", 'celda" + i + j + "')\">");
+                            out.println("<td class=\"celda_juego\" id=\"celda" + i + j + "\" onclick=\"clickPregunta('" + perfil.pistas.get(j).get(i).pregunta + "', '" + perfil.pistas.get(j).get(i).respuesta + "', " + perfil.pistas.get(j).get(i).dificultad + ", 'celda" + i + j + "')\">");
                             out.println((i+1)*200);
                             out.println("</td>");
                         %>

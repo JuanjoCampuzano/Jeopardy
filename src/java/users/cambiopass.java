@@ -44,8 +44,8 @@ public class cambiopass extends HttpServlet {
         
         // Declarar sesion y obtener usuario en activo
         HttpSession session = request.getSession();
-        String username = "q";//(String)session.getAttribute("username");
-        String url="/menu.jsp";
+        String username = (String)session.getAttribute("username");
+        String url;
         
         // Validar que la password sea igual en ambos casos
         if (nueva1.equals(nueva2) && username!=null){
@@ -56,9 +56,9 @@ public class cambiopass extends HttpServlet {
                 Statement stmt=con.createStatement();
                 String query = "SELECT * FROM Usuario WHERE username='"+username+"'";
                 ResultSet rs=stmt.executeQuery(query);
-                while (rs.next()){
+                if (rs.next()){
                     // Verificar que la contraseña actual sea correcta
-                    if (actual.equals(rs.getString(2))){
+                    if (actual.equals(rs.getString(3))){
                         query = "UPDATE Usuario SET password='"+nueva1+"' WHERE username='"+username+"'";
                         response.getWriter().print(query);
                         stmt.executeUpdate(query);

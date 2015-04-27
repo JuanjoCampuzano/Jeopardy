@@ -12,6 +12,26 @@
         <servlet-name>nueva_pista</servlet-name>
         <servlet-class>Juego.nueva_pista</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>nueva_clase</servlet-name>
+        <servlet-class>Juego.nueva_clase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>nuevo_tema</servlet-name>
+        <servlet-class>Juego.nuevo_tema</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editar_clase</servlet-name>
+        <servlet-class>Juego.editar_clase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editar_pista</servlet-name>
+        <servlet-class>Juego.editar_pista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editar_tema</servlet-name>
+        <servlet-class>Juego.editar_tema</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginattempt</servlet-name>
         <url-pattern>/loginattempt</url-pattern>
@@ -23,6 +43,26 @@
     <servlet-mapping>
         <servlet-name>nueva_pista</servlet-name>
         <url-pattern>/nueva_pista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>nueva_clase</servlet-name>
+        <url-pattern>/nueva_clase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>nuevo_tema</servlet-name>
+        <url-pattern>/nuevo_tema</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editar_clase</servlet-name>
+        <url-pattern>/editar_clase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editar_pista</servlet-name>
+        <url-pattern>/editar_pista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editar_tema</servlet-name>
+        <url-pattern>/editar_tema</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

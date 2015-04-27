@@ -36,8 +36,10 @@ public class editar_pista extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre = request.getParameter("pistas");
+        String nombre = request.getParameter("pista");
         String pista_nueva = request.getParameter("nueva_pista");
+        String respuesta = request.getParameter("nueva_respuesta");
+        String dificultad = request.getParameter("dificultad");
         HttpSession session = request.getSession();
         String url = "/menu.jsp";
         
@@ -53,7 +55,7 @@ public class editar_pista extends HttpServlet {
                     session.setAttribute("error_cambiar_pista", "Ya existe una pista con ese nombre.");
                     url = "/editar_pista.jsp";
                 } else {
-                    String query = "UPDATE pista SET nombre= '" + pista_nueva + "' WHERE nombre= '" + nombre + "' ";
+                    String query = "UPDATE pista SET pregunta= '" + pista_nueva + "', respuesta= '" + respuesta + "' WHERE pregunta= '" + nombre + "' ";
                     System.out.println(query);
                     response.getWriter().print(query);
                     stmt.executeUpdate(query);
@@ -66,7 +68,7 @@ public class editar_pista extends HttpServlet {
 
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
-        rd.forward(request, response);
+        //rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

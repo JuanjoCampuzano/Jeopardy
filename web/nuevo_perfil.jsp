@@ -68,18 +68,22 @@
                 }  
             });
         });
-    });
+   });
      
 </script>
+<center>
+<h1 id="titulo">Creaci&oacute;n de perfil</h1>
 <form action="nuevo_perfil" method="post">
-    Clase:
-    <select id="clases" name="clase">
+    <h2 id="seleccion">Seleccione una clase:</h2>
+    
+    <select id="clases" class="validacion" name="clase">
     </select>
-    <table>
+    <div id="break">
+    <table id="table_menu">
         <tr>
             <%
                 for(int i = 0; i < 5; i++) { 
-                    out.println("<th><select onchange=\"temaChanged(" + i + ")\" id=\"tema" + i + "\" name=\"tema" + i + "\"></select></th>");
+                    out.println("<th><select class=\"validacion\" onchange=\"temaChanged(" + i + ")\" id=\"tema" + i + "\" name=\"tema" + i + "\"></select></th>");
                 }
             %>
         </tr>
@@ -87,14 +91,16 @@
             for(int i = 0; i < 5; i++) {
                 out.println("<tr>");
                 for(int j = 0; j < 5; j++) {
-                    out.println("<td><select id=\"pregunta" + i + j + "\" name=\"pregunta" + i + j + "\"></select></td>");
+                    out.println("<td><select class=\"validacion\" id=\"pregunta" + i + j + "\" name=\"pregunta" + i + j + "\"></select></td>");
                 }
                 out.println("<tr>");
             }
         %>
     </table>
-<br>
-
-<input type="submit">
+    </div>
+    <div id="break">
+        <input id="click_button_small" type="submit">
+    </div>
 </form>
+</center>
 <%@include file="footer.jsp" %>

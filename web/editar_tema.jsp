@@ -25,7 +25,7 @@
         
         $('#clases').change(function (e) {
             if (first) {
-                $('#temasDiv').append('Temas<select id="temas" name="tema"></select><br>');
+                $('#temasDiv').append('<h2 id="bienvenida">Selecciona el tema</h2><select id="temas" name="tema"></select><br>');
                 $('#noselection').remove();
                 first = false;
             }
@@ -56,14 +56,19 @@
  });
      
  </script>
-<form id="forma" action="editar_tema" name="editar" method="post">
-    Clase:
-    <select id="clases" name="clase">
-    </select>
-<br>
-<div id="temasDiv"></div>
-Nombre Nuevo: <input type="text" name="nuevo_tema">
-<br>
-<input type="submit" onclick="return validacion()" id="click">
-</form>
+ <center>
+     <h1 id="titulo">Edici&oacute;n de tema</h1>
+    <form id="forma" action="editar_tema" name="editar" method="post">
+        <h2 id="bienvenida">Seleciona la clase</h2>
+        <select id="clases" name="clase">
+        </select>
+    <br>
+    <div id="temasDiv"></div>
+    <h2 id="bienvenida">Nombre nuevo del tema:</h2>
+    <input type="text" id="textarea" name="nuevo_tema">
+    <div id="break">
+        <input type="submit" onclick="return validacion()" id="click">
+    </div>
+    </form>
+ </center>
 <%@include file="footer.jsp" %>

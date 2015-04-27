@@ -29,12 +29,17 @@
       }
     }
 </script>
+<center>
+    <h1 id="titulo">Editar clase</h1>
  <form action="editar_clase" name="editar" method="post">
-Selecciona la clase que deseas editar :
+     <h2 id="seleccion">Selecciona la clase que deseas editar :</h2>
     <select id="clases" name="clase">
     </select>
-Nombre Nuevo: <input type="text" name="nueva_clase">
-<br>
-<input type="submit" onclick="return validacion()" id="click">
+     <h2 id="seleccion">Nombre Nuevo: </h2>
+     <input type="text" id="textarea" name="nueva_clase">
+     <div id="break">
+     <input type="submit" id="click_button_small" onclick="return validacion()">
+     </div>
 </form>
+</center>
 <%@include file="footer.jsp" %>

@@ -55,7 +55,7 @@ public class editar_pista extends HttpServlet {
                     session.setAttribute("error_cambiar_pista", "Ya existe una pista con ese nombre.");
                     url = "/editar_pista.jsp";
                 } else {
-                    String query = "UPDATE pista SET pregunta= '" + pista_nueva + "', respuesta= '" + respuesta + "', difficulty= '" + dificultad + "' WHERE pregunta= '" + nombre + "' ";
+                    String query = "UPDATE pista SET pregunta= '" + pista_nueva + "', respuesta= '" + respuesta + "' WHERE pregunta= '" + nombre + "' ";
                     System.out.println(query);
                     response.getWriter().print(query);
                     stmt.executeUpdate(query);

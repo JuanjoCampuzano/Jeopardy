@@ -25,7 +25,7 @@
         
         var temasChanged = function () {
             $('#temas').change(function (e) {
-                $('#pistasDiv').html('Pistas<select id="pistas" name="pista"></select><br>');
+                $('#pistasDiv').html('<h2 id="seleccion">Pistas:</h2><select id="pistas" name="pista"></select><br>');
                 $('#noselection').remove();
                 $('#pistas').append('<option id="noselection" value="">-</option>\n');
                 first = false;
@@ -47,7 +47,7 @@
         
         $('#clases').change(function (e) {
             if (first) {
-                $('#temasDiv').append('Temas<select id="temas" name="tema"></select><br>');
+                $('#temasDiv').append('<h2 id="seleccion">Tema:</h2><select id="temas" name="tema"></select><br>');
                 $('#noselection').remove();
                 $('#temas').append('<option id="noselection" value="">-</option>\n');
                 
@@ -72,21 +72,22 @@
  });
      
  </script>
+ <center>
+     <h1 id="titulo">Editar Pista</h1>
 <form id="forma" action="editar_pista" method="post">
-    Clase:
+    <h2 id="seleccion">Clase:</h2>
     <select id="clases" name="clase">
     </select>
 <br>
 <div id="temasDiv"></div>
 <div id="pistasDiv"></div>
-Pista: <input type="text" name="nueva_pista">
+<h2 id="seleccion">Pregunta</h2> <input id="textarea" type="text" name="nueva_pista">
 <br>
-Respuesta: <input type="text" name="nueva_respuesta">
+<h2 id="seleccion">Respuesta:</h2> <input id="textarea" type="text" name="nueva_respuesta">
 <br>
-Dificultad: <select name="dificultad">
-<% for (int i=0; i<5; i++) out.println("<option value="+i+">"+(i+1)*200+"</option>");%>
-</select>
-<br>
-<input type="submit" id="click">
+<div id="break">
+<input type="submit" id="click_button_small">
+</div>
 </form>
+</center>
 <%@include file="footer.jsp" %>

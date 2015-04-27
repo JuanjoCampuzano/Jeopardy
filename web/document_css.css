@@ -3,22 +3,22 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Apr 22, 2015, 10:41:08 PM
     Author     : AlejandroSanchez
 */
-
+ 
     #bienvenida , #seleccion{
         color: #FFFFFF;
         font-family:Arial;
         font-size: 20px;
         text-align: center;
     }
-
+ 
     #table_menu{
        margin: 0px auto;
        text-align: center;
-
+ 
     }
     td{
         padding: 30px;
@@ -28,58 +28,58 @@ and open the template in the editor.
     }
     #click_button{
         width:500px;
-        background: #FFFFFF; 
-        padding: 8px 14px 10px; 
-        border:3px solid #000000; 
-        cursor:pointer; 
-        font-family:sans-serif; 
+        background: #FFFFFF;
+        padding: 8px 14px 10px;
+        border:3px solid #000000;
+        cursor:pointer;
+        font-family:sans-serif;
         letter-spacing:1px;
         color: #000000;
-        border-radius: 10px; 
+        border-radius: 10px;
     }
-    
+   
    #click_button_small{
         width:100px;
-        background: #FFFFFF; 
-        padding: 8px 14px 10px; 
-        border:3px solid #000000; 
-        cursor:pointer; 
-        font-family:sans-serif; 
+        background: #FFFFFF;
+        padding: 8px 14px 10px;
+        border:3px solid #000000;
+        cursor:pointer;
+        font-family:sans-serif;
         letter-spacing:1px;
         color: #000000;
-        border-radius: 10px; 
+        border-radius: 10px;
     }
-    
+   
     #table_juego{
         border:solid;
         border-width:10px;
-        border-color:#101010;
+        border-color:#FFFFFF;
         margin: 0px auto;
     }
-    
+   
 /*    #body_juego{
         background: #FFFFFF;
     }
     */
-    #header_juego{
-         color: yellow; 
-        background-color: blue; 
-        font-size: 40px; 
+    .header_juego{
+        color: yellow;
+        background-color: blue;
+        font-size: 40px;
         font-family: "Helvetica";
         padding: 15px;
-        
+       
     }
-    
-    #juego_valor {
-        color: yellow; 
-        background-color: blue; 
-        font-size: 40px; 
+   
+    .header_juego, .celda_juego {
+        color: yellow;
+        background-color: blue;
+        font-size: 40px;
         font-family: "Helvetica";
         padding: 15px;
     }
-    #juego_valor:hover {background-color: #507FFF;}
-    #juego_valor:active {color:orangered;}
-    
+    .celda_juego:hover {background-color: #507FFF;}
+    .celda_juego:active {color:orangered;}
+   
     #clases, #temas, #pistas{
        color:black;
        background-color: white;
@@ -89,20 +89,20 @@ and open the template in the editor.
        font-weight: bold;
        text-align: center;
     }
-    
+   
     #textarea{
-        width: 300px; 
+        width: 300px;
         height: 50px;
         font-family: Arial;
         font-size: 40px;
     }
-    
+   
     #titulo{
         font:normal 60pt Arial;
         color:#FFFFFF;
         text-align: center;
     }
-    
+   
     #break{
         padding: 10px;
     }

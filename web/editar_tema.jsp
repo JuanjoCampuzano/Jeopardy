@@ -42,10 +42,21 @@
                 }  
             });
         });
+        
+     function validacion(){
+      var checkNuevo_tema = document.forms["editar"]["nuevo_tema"].value;
+        //Para testing 
+        alert(checkNuevo_tema.value);
+        if(checkNuevo_tema === "" || checkNueva_clase === null){
+          alert("Favor de poner el nombre nuevo de la clase");
+          return false;
+       }
+    }
+        
  });
      
  </script>
-<form id="forma" action="editar_tema" method="post">
+<form id="forma" action="editar_tema" name="editar" method="post">
     Clase:
     <select id="clases" name="clase">
     </select>
@@ -53,6 +64,6 @@
 <div id="temasDiv"></div>
 Nombre Nuevo: <input type="text" name="nuevo_tema">
 <br>
-<input type="submit" id="click">
+<input type="submit" onclick="return validacion()" id="click">
 </form>
 <%@include file="footer.jsp" %>

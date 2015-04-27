@@ -42,12 +42,11 @@ public class getpistas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         HttpSession session = request.getSession();
 
         String clase = request.getParameter("clase");
         String tema = request.getParameter("tema");
-        
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jeopardy", "root", "");
             Statement stmt = con.createStatement();

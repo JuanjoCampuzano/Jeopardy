@@ -23,12 +23,38 @@
         
         var first = true;
         
+        var temasChanged = function () {
+            $('#temas').change(function (e) {
+                $('#pistasDiv').html('Pistas<select id="pistas" name="pista"></select><br>');
+                $('#noselection').remove();
+                $('#pistas').append('<option id="noselection" value="">-</option>\n');
+                first = false;
+                
+                $.ajax({
+                    url: 'getpistas?clase=' + $('#clases').val() + '&' + 'tema=' + $('#temas').val(),
+                    type: 'GET',
+                    dataType: 'xml',
+                    success: function(returnedXMLResponse){
+                        $('#pistas').html('');
+                        $('pista', returnedXMLResponse).each(function () {
+                            var nombre = $(this).attr('pregunta');
+                            $('#pistas').append('<option value="' + nombre + '">' + nombre + '</option>\n');
+                        });
+                    }  
+                });
+            });
+        };
+        
         $('#clases').change(function (e) {
             if (first) {
                 $('#temasDiv').append('Temas<select id="temas" name="tema"></select><br>');
                 $('#noselection').remove();
+                $('#temas').append('<option id="noselection" value="">-</option>\n');
+                
                 first = false;
+                temasChanged();
             }
+            $('#pistasDiv').html('');
             $.ajax({
                 url: 'gettemas?clase=' + $('#clases').val(),
                 type: 'GET',
@@ -42,27 +68,7 @@
                 }  
             });
         });
-        
-        $('#temas').change(function (e) {
-            if (first) {
-                $('#pistasDiv').append('Pistas<select id="pistas" name="pista"></select><br>');
-                $('#noselection').remove();
-                first = false;
-            }
-            $.ajax({
-                url: 'getpistas?clase=' + $('#clases').val() + '&' + 'tema=' + $('#tema').val(),
-                type: 'GET',
-                dataType: 'xml',
-                success: function(returnedXMLResponse){
-                    $('#pistas').html('');
-                    $('pista', returnedXMLResponse).each(function () {
-                        var nombre = $(this).attr('pregunta');
-                        $('#pistas').append('<option value="' + nombre + '">' + nombre + '</option>\n');
-                    });
-                }  
-            });
-        });
-        
+
  });
      
  </script>
@@ -73,7 +79,13 @@
 <br>
 <div id="temasDiv"></div>
 <div id="pistasDiv"></div>
-Nombre nuevo de pista: <input type="text" name="nueva_pista">
+Pista: <input type="text" name="nueva_pista">
+<br>
+Respuesta: <input type="text" name="nueva_respuesta">
+<br>
+Dificultad: <select name="dificultad">
+<% for (int i=0; i<5; i++) out.println("<option value="+i+">"+(i+1)*200+"</option>");%>
+</select>
 <br>
 <input type="submit" id="click">
 </form>

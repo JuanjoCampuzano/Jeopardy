@@ -10,8 +10,7 @@
 <html>
     <%@include file="header.jsp"%>
     <body>
-        <h1 id="bienvenida">Bienvenido a Jeopardy!</h1>
-        <h2 id="seleccion">Favor de seleccionar una de las siguientes opciones</h2>
+        <h1 id="titulo">Jeopardy</h1>
         <table id="table_menu">
             <tr id="table_row">
                 <td>

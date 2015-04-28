@@ -75,12 +75,16 @@ public class verperfiles extends HttpServlet {
                 Map<Integer, Map<String, List<Pista>>> perfil = map.get(id);
                 if (!perfil.containsKey(col)) {
                     Map<String, List<Pista>> column = new HashMap<>();
-                    column.put(tema, new ArrayList<>());
+                    List<Pista> l = new ArrayList<>();
+                    for (int i = 0; i < 5; i++) {
+                        l.add(null);
+                    }
+                    column.put(tema, l);
                     perfil.put(col, column);
                 }
                 
                 List<Pista> pistas = perfil.get(col).get(tema);
-                pistas.add(pista);
+                pistas.set(pista.dificultad, pista);
             }
             
             List<Perfil> perfiles = new ArrayList<>();

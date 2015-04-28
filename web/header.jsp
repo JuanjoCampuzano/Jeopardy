@@ -1,9 +1,3 @@
-<%-- 
-    Document   : header
-    Created on : Apr 22, 2015, 11:20:54 PM
-    Author     : AlejandroSanchez
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,5 +9,7 @@
     </head>
 
     <body>
-        <a id="click_button_small" href="menu.jsp">menu</a>
+        <div id="break">
+            <a href="menu.jsp" id="click_button_small">menu</a>
+        </div>
         <div class="pageContent">

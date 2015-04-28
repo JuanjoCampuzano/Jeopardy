@@ -9,12 +9,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="header.jsp" %>
+<center>
+    <h1 id="titulo">
     Resultados
-    <table>
+    </h1>
+    <table id="table_juego">
         <tr>
-        <th>Alumno</th>
-        <th>Puntos</th>
-        <th>Juegos</th>
+        <th class="header_juego">Alumno</th>
+        <th class="header_juego">Puntos</th>
+        <th class="header_juego">Juegos</th>
         </tr>
         <%
             List<String> alumnos = (List<String>) session.getAttribute("alumnos");
@@ -23,13 +26,13 @@
             for (int i = 0; i < alumnos.size(); i++) {
                 %>
                 <tr>
-                    <td>
+                    <td class="celda_juego">
                         <%=alumnos.get(i)%>
                     </td>
-                    <td>
+                    <td class="celda_juego">
                         <%=puntos.get(i)%>
                     </td>
-                    <td>
+                    <td class="celda_juego">
                         <%=juegos.get(i)%>
                     </td>
                 </tr>
@@ -37,4 +40,5 @@
             }
         %>
     </table>
+</center>
 <%@include file="footer.jsp" %>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : Apr 20, 2015, 9:54:45 PM
-    Author     : juanjocampuzano
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <script>
             function validateForm(){
@@ -32,10 +26,7 @@
                     <tr><td><h4 id="seleccion">Username</h4></td><td><input type="text" name="username"></td></tr>
                     <tr><td><h4 id="seleccion">Password</h4></td><td><input type="password" name="password"></tr>
                 </table>
-                <input type="submit" id="click_button_small" onclick="return validateForm()" value="Entrar">
-            </form>
-            <form name="nuevo_user" action="nuevo_usuario.jsp" method="get">
-                <input type="submit" id="click_button_small" value="Nuevo usuario">
+                <input type="submit" onclick="return validateForm()" value="Entrar">
             </form>
         </fieldset>
     </center>

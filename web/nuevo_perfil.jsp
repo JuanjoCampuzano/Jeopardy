@@ -145,11 +145,11 @@
     <select id="clases" class="validacion" name="clase">
     </select>
     <div id="break">
-    <table id="table_menu">
+    <table id="table_juego">
         <tr>
             <%
                 for(int i = 0; i < 5; i++) { 
-                    out.println("<th><select class=\"validacion\" onchange=\"temaChanged(" + i + ")\" id=\"tema" + i + "\" name=\"tema" + i + "\"></select></th>");
+                    out.println("<th class=\"header_juego\"><select class=\"validacion\" onchange=\"temaChanged(" + i + ")\" id=\"tema" + i + "\" name=\"tema" + i + "\"></select></th>");
                 }
             %>
         </tr>
@@ -157,7 +157,7 @@
             for(int i = 0; i < 5; i++) {
                 out.println("<tr>");
                 for(int j = 0; j < 5; j++) {
-                    out.println("<td><select class=\"validacion\" id=\"pregunta" + i + j + "\" name=\"pregunta" + i + j + "\"></select></td>");
+                    out.println("<td class=\"celda_juego\"><select class=\"validacion\" id=\"pregunta" + i + j + "\" name=\"pregunta" + i + j + "\"></select></td>");
                 }
                 out.println("<tr>");
             }

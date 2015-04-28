@@ -167,6 +167,16 @@
     <div id="break">
         <input id="click_button_small" type="submit" onclick="return validate()">
     </div>
-</form>
+    </form>
+    <%if (request.getParameter("perfil") != null) { %>
+    <form action="borrar" method="post">
+        <div id="break">
+            <input type="hidden" name="nombre" value="<%=perfil.id%>">
+            <input type="hidden" name="item" value="perfil">
+            <input id="click_button_small" type="submit" value="Borrar">
+        </div>
+    </form>
+    <%}%>
+
 </center>
 <%@include file="footer.jsp" %>

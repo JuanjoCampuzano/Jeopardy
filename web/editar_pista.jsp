@@ -68,6 +68,16 @@
                 }  
             });
         });
+        
+        borrar = function() {
+            $.ajax({
+                url: 'borrar?item=pista&nombre=' + $('#pistas').val().trim(),
+                type: 'POST',
+                success: function(returnedXMLResponse){
+                    window.location = 'menu.jsp';
+                }
+            });
+        }
 
  });
      
@@ -89,5 +99,8 @@
 <input type="submit" id="click_button_small">
 </div>
 </form>
+        <div id="break">
+            <input id="click_button_small" type="button" value="Borrar" onclick="borrar()">
+        </div>
 </center>
 <%@include file="footer.jsp" %>

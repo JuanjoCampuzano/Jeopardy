@@ -20,7 +20,8 @@
                     </form>
                 </td>                   
                 <td>
-                    <form action="editar_perfil.jsp" method="get">
+                    <form action="verperfiles" method="get">
+                    <input type="hidden" name="editar" value="true" />
                     <input type="submit" id="click_button" value="Editar Perfil"/>
                     </form>
                 </td>

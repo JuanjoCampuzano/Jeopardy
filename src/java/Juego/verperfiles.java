@@ -49,18 +49,25 @@ public class verperfiles extends HttpServlet {
         HttpSession session = request.getSession();
         String usuario = (String) session.getAttribute("username");
         String url = "/verperfiles.jsp";
+        String perfilId = request.getParameter("perfil");
+        if (perfilId != null) {
+            url = "/nuevo_perfil.jsp?perfil=" + perfilId;
+        }
         
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
             Statement stmt = con.createStatement();
             
+            Map<Integer, String> clases = new HashMap<>();
             Map<Integer, Map<Integer, Map<String, List<Pista>>>> map = new HashMap<>();
-            ResultSet rs = stmt.executeQuery("select Perfil.id, pregunta, respuesta, difficulty, Tema.nombre, col from Perfil join Pistas_Perfiles on Perfil.id = id_Perfil join Pista on Pista.id = id_Pista join Tema on Pista.id_Tema = Tema.id join Usuario on id_Usuario = Usuario.id where username = '" + usuario + "'");
+            ResultSet rs = stmt.executeQuery("select Perfil.id, pregunta, respuesta, difficulty, Tema.nombre, col, Clase.nombre from Perfil join Pistas_Perfiles on Perfil.id = id_Perfil join Pista on Pista.id = id_Pista join Tema on Pista.id_Tema = Tema.id join Usuario on id_Usuario = Usuario.id join Clase on Tema.id_clase = Clase.id where username = '" + usuario + "'");
             while(rs.next()) {
                 Pista pista = new Pista(rs.getString(2), rs.getString(3), rs.getInt(4));
                 String tema = rs.getString(5);
+                String clase = rs.getString(7);
                 int col = rs.getInt(6);
                 int id = rs.getInt(1);
+                clases.put(id, clase);
                 if(!map.containsKey(id)) {
                     map.put(id, new HashMap<>());
                 }
@@ -93,11 +100,17 @@ public class verperfiles extends HttpServlet {
                 }).forEach((column) -> {
                     pistas.set(column.getKey(), column.getValue().values().iterator().next());
                 });
-                
-                perfiles.add(new Perfil(id, temas, pistas));
+            
+                if (perfilId == null || Integer.parseInt(perfilId) == id) {
+                    perfiles.add(new Perfil(id, clases.get(id), temas, pistas));
+                }
             });
             
-            session.setAttribute("perfiles", perfiles);
+            if (perfilId == null) {
+                session.setAttribute("perfiles", perfiles);
+            } else {
+                session.setAttribute("perfil", perfiles.get(0));
+            }
 
         } catch (Exception e) {
             System.out.println(e);

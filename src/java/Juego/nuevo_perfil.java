@@ -40,45 +40,57 @@ public class nuevo_perfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
 
         String clase = request.getParameter("clase");
         String usuario = (String) session.getAttribute("username");
         String url = "/menu.jsp";
+        String perfilId = request.getParameter("perfil");
 
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
             Statement stmt = con.createStatement();
+
+            if (perfilId != null) {
+                stmt.executeUpdate("delete from pistas_perfiles where id_Perfil = " + perfilId);
+                stmt.executeUpdate("delete from Perfil where id = " + perfilId);
+            }
+
             ResultSet rs = stmt.executeQuery("select id from Clase where nombre = '" + clase + "'");
             if (rs.next()) {
                 int idClase = rs.getInt(1);
                 rs = stmt.executeQuery("select id from Usuario where username = '" + usuario + "'");
                 if (rs.next()) {
-                    int idUsuario= rs.getInt(1);
+                    int idUsuario = rs.getInt(1);
+                    int idPerfil;
                     
-                    stmt.executeUpdate("insert into perfil (id_Usuario, id_Clase) values (" + idUsuario + ", " + idClase + ")");
-                    rs = stmt.executeQuery("select id from perfil order by id desc limit 1");
-                    if (rs.next()) {
-                        int idPerfil = rs.getInt(1);
-                        
-                        for (int i = 0; i < 5; i++) {
-                            rs = stmt.executeQuery("select id from tema where nombre = '" + request.getParameter("tema" + i) + "'");
+                    if (perfilId != null) {
+                        stmt.executeUpdate("insert into perfil (id, id_Usuario, id_Clase) values (" + perfilId + ", " + idUsuario + ", " + idClase + ")");
+                        idPerfil = Integer.parseInt(perfilId);
+                    } else {
+                        stmt.executeUpdate("insert into perfil (id_Usuario, id_Clase) values (" + idUsuario + ", " + idClase + ")");
+                        rs = stmt.executeQuery("select id from perfil order by id desc limit 1");
+                        rs.next();
+                        idPerfil = rs.getInt(1);
+                    }
+
+                    for (int i = 0; i < 5; i++) {
+                        rs = stmt.executeQuery("select id from tema where nombre = '" + request.getParameter("tema" + i) + "'");
+                        rs.next();
+                        int idTema = rs.getInt(1);
+                        for (int j = 0; j < 5; j++) {
+                            String pregunta = request.getParameter("pregunta" + j + i);
+                            rs = stmt.executeQuery("select id from pista where pregunta = '" + pregunta + "'");
                             rs.next();
-                            int idTema = rs.getInt(1);
-                            for (int j = 0; j < 5; j++) {
-                                String pregunta = request.getParameter("pregunta" + j + i);
-                                rs = stmt.executeQuery("select id from pista where pregunta = '" + pregunta + "'");
-                                rs.next();
-                                int idPista = rs.getInt(1);
-                                stmt.executeUpdate("insert into pistas_perfiles (id_Perfil, id_Pista, id_Tema, col) values (" + idPerfil +
-                                        ", " + idPista + ", " + idTema + ", " + i + ")");
-                            }
+                            int idPista = rs.getInt(1);
+                            stmt.executeUpdate("insert into pistas_perfiles (id_Perfil, id_Pista, id_Tema, col) values (" + idPerfil
+                                    + ", " + idPista + ", " + idTema + ", " + i + ")");
                         }
                     }
                 } else {
                     session.setAttribute("error_crear_pista", "usuario invalido.");
-                    url = "/nuevo_perfil.jsp";
+                    url = "/";
                 }
             } else {
                 session.setAttribute("error_crear_perfil", "No existe esa clase.");
@@ -92,7 +104,7 @@ public class nuevo_perfil extends HttpServlet {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
         rd.forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

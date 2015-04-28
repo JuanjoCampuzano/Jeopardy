@@ -12,7 +12,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -26,8 +28,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author alfredo_altamirano
  */
-@WebServlet(name = "jugar", urlPatterns = {"/jugar"})
-public class jugar extends HttpServlet {
+@WebServlet(name = "editarperfil", urlPatterns = {"/editarperfil"})
+public class editarperfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,43 +42,13 @@ public class jugar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String perfilId = request.getParameter("perfil");
-        HttpSession session = request.getSession();
-
         
-        try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
-            Statement stmt = con.createStatement();
-            
-            ResultSet rs = stmt.executeQuery("select pregunta, respuesta, difficulty, Tema.nombre, col from Perfil join Pistas_Perfiles on Perfil.id = id_Perfil join Pista on Pista.id = id_Pista join Tema on Pista.id_Tema = Tema.id join Usuario on id_Usuario = Usuario.id where Perfil.id = " + perfilId);
-            
-            List<String> temas = new ArrayList<>();
-            List<List<Pista>> pistas = new ArrayList<>();
-            
-            for(int i = 0; i < 5; i++) {
-                temas.add(null);
-                pistas.add(new ArrayList<>());
-                for (int j = 0; j < 5; j++) {
-                    pistas.get(i).add(null);
-                }
-            }
-            
-            while (rs.next()) {
-                int col = rs.getInt(5), dificultad = rs.getInt(3);
-                String tema = rs.getString(4), pregunta = rs.getString(1), respuesta = rs.getString(2);
-                temas.set(col, tema);
-                pistas.get(col).set(dificultad, new Pista(pregunta, respuesta, dificultad));
-            }
-            
-            session.setAttribute("perfil", new Perfil(Integer.parseInt(perfilId), "", temas, pistas));
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
+        
+        
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/juego.jsp");
+        RequestDispatcher rd = sc.getRequestDispatcher("/nuevo_perfil.jsp?editar=true");
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -42,6 +42,10 @@
             %>
             <input type="button" value="Jugar" onclick="window.location = 'jugar?perfil=<%=perfiles.get(i).id%>'">
             <%
+            } else if (request.getParameter("editar") != null) {
+            %>
+            <input type="button" value="Editar" onclick="window.location = 'verperfiles?perfil=<%=perfiles.get(i).id%>'">
+            <%
             }
             %>
             <br>

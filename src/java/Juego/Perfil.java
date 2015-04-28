@@ -15,13 +15,15 @@ import java.util.List;
 public class Perfil {
     
     public int id;
+    public String clase;
     public List<String> temas;
     public List<List<Pista>> pistas = new ArrayList<>();
     
-    public Perfil(int id, List<String> temas, List<List<Pista>> pistas) {
+    public Perfil(int id, String clase, List<String> temas, List<List<Pista>> pistas) {
         this.id = id;
         this.temas = temas;
         this.pistas = pistas;
+        this.clase = clase;
     }
     
 }

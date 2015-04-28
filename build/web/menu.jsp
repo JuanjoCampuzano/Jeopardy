@@ -52,7 +52,7 @@
             </tr>
             <tr id="table_row">
                 <td>
-                    <form action="" method="get">
+                    <form action="editar_clase.jsp" method="get">
                         <input type="submit" id="click_button" value="Editar Clase"/>
                     </form>
                 </td>

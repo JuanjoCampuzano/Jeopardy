@@ -47,16 +47,19 @@ public class verresultados extends HttpServlet {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
             Statement stmt = con.createStatement();
             
-            ResultSet rs = stmt.executeQuery("select nombre, sum(points), count(points) from resultados join alumno on id_alumno = Alumno.id group by nombre");
+            ResultSet rs = stmt.executeQuery("select nombre, sum(points) as p, count(points) from resultados join alumno on id_alumno = Alumno.id group by nombre order by p desc");
             List<String> alumnos = new ArrayList<>();
             List<Integer> puntos = new ArrayList<>();
+            List<Integer> juegos = new ArrayList<>();
             while (rs.next()) {
                 alumnos.add(rs.getString(1));
                 puntos.add(rs.getInt(2));
+                juegos.add(rs.getInt(3));
             }
             
             session.setAttribute("alumnos", alumnos);
             session.setAttribute("puntos", puntos);
+            session.setAttribute("juegos", juegos);
             
         } catch (Exception e) {
             System.out.println(e);

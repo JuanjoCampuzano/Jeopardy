@@ -32,6 +32,10 @@
         <servlet-name>editar_tema</servlet-name>
         <servlet-class>Juego.editar_tema</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>nuevousuario</servlet-name>
+        <servlet-class>users.nuevousuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginattempt</servlet-name>
         <url-pattern>/loginattempt</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>editar_tema</servlet-name>
         <url-pattern>/editar_tema</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>nuevousuario</servlet-name>
+        <url-pattern>/nuevousuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

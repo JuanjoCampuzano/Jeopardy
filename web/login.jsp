@@ -34,7 +34,7 @@
                 </table>
                 <input type="submit" id="click_button_small" onclick="return validateForm()" value="Entrar">
             </form>
-            <form name="nuevo_user" action="new_user.php" method="post">
+            <form name="nuevo_user" action="nuevo_usuario.jsp" method="get">
                 <input type="submit" id="click_button_small" value="Nuevo usuario">
             </form>
         </fieldset>

@@ -59,7 +59,7 @@ public class cambiopass extends HttpServlet {
                 if (rs.next()){
                     // Verificar que la contraseña actual sea correcta
                     if (actual.equals(rs.getString(3))){
-                        query = "UPDATE Usuario SET password='"+nueva1+"' WHERE username='"+username+"'";
+                        query = "UPDATE Usuario SET password='"+nueva1+"', password_changed=true WHERE username='"+username+"'";
                         response.getWriter().print(query);
                         stmt.executeUpdate(query);
                     }

@@ -66,7 +66,7 @@ public class loginattempt extends HttpServlet {
                     // Comaprar parametros de forma con datos de la tabla
                     if (realPassword.equals(password)) {
                         // Log in exitoso
-                        url = "/menu.jsp";
+                        url = "/menu";
                         session.setAttribute("loggedIn", true);
                         session.setAttribute("username", username);
                         session.setAttribute("loginmsg", "");

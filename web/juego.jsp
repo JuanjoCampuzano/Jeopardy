@@ -64,9 +64,5 @@
                 }
             %>
         </table>
-        <center>
-            <div id="break">
-                <input id="click_button_small" type="button" onclick="terminar()" value="Terminar">
-            </div>
-        </center>
+        <input type="button" onclick="terminar()" value="Terminar">
 <%@include file="footer.jsp"%>

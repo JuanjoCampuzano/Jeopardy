@@ -7,5 +7,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="header.jsp" %>
-    Resultados
+    <h1>Hello World!</h1>
 <%@include file="footer.jsp" %>

@@ -69,6 +69,19 @@
             });
         });
    });
+   
+   function validate() {
+       var valid = true;
+       $('.validacion').each(function () {
+           if (!$(this).val()) {
+               valid = false;
+           }
+       });
+       if (!valid) {
+           alert('Ningun campo debe estar vacio.');
+       }
+       return valid;
+   }
      
 </script>
 <center>
@@ -99,7 +112,7 @@
     </table>
     </div>
     <div id="break">
-        <input id="click_button_small" type="submit">
+        <input id="click_button_small" type="submit" onclick="return validate()">
     </div>
 </form>
 </center>

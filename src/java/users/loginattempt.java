@@ -58,26 +58,27 @@ public class loginattempt extends HttpServlet {
                 int attempts = rs.getInt(2);
 
                 // Verificar que la cuenta no este bloqueda
-                if (attempts == 3) {
+                if (attempts >= 3) {
                     session.setAttribute("loginmsg", "Esta cuenta esta bloqueda.");
                     url = "/login.jsp";
-                }
-
-                // Comaprar parametros de forma con datos de la tabla
-                if (realPassword.equals(password)) {
-                    // Log in exitoso
-                    url = "/menu.jsp";
-                    session.setAttribute("loggedIn", true);
-                    session.setAttribute("username", username);
-                    session.setAttribute("loginmsg", "");
-                    query = "UPDATE Usuario SET failed = 0 WHERE username = '" + username + "'";
-                    stmt.executeUpdate(query);
                 } else {
-                    // Log in fallido, incrementar el numero de intentos
-                    query = "UPDATE Usuario SET failed=" + attempts + 1 + " WHERE username='" + username + "'";
-                    stmt.executeUpdate(query);
-                    url = "/login.jsp";
-                    session.setAttribute("loginmsg", "Password incorrecto. Llevas " + attempts + 1 + " intento" + ((attempts == 0) ? "" : "s") + " fallido" + ((attempts == 0) ? "." : "s."));
+
+                    // Comaprar parametros de forma con datos de la tabla
+                    if (realPassword.equals(password)) {
+                        // Log in exitoso
+                        url = "/menu.jsp";
+                        session.setAttribute("loggedIn", true);
+                        session.setAttribute("username", username);
+                        session.setAttribute("loginmsg", "");
+                        query = "UPDATE Usuario SET failed = 0 WHERE username = '" + username + "'";
+                        stmt.executeUpdate(query);
+                    } else {
+                        // Log in fallido, incrementar el numero de intentos
+                        query = "UPDATE Usuario SET failed=" + (attempts + 1) + " WHERE username='" + username + "'";
+                        stmt.executeUpdate(query);
+                        url = "/login.jsp";
+                        session.setAttribute("loginmsg", "Password incorrecto. Llevas " + (attempts + 1) + " intento" + ((attempts == 0) ? "" : "s") + " fallido" + ((attempts == 0) ? "." : "s."));
+                    }
                 }
             } else {
                 session.setAttribute("loginmsg", "No existe este usuario.");

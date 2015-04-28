@@ -15,7 +15,5 @@
     </head>
 
     <body>
-        <div id="break">
-            <a href="menu.jsp" id="click_button_small">menu</a>
-        </div>
+        <a href="menu.jsp">menu</a>
         <div class="pageContent">

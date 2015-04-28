@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Juego;
+package users;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,23 +11,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author alfredo_altamirano
+ * @author AlejandroSanchez
  */
-@WebServlet(name = "verresultados", urlPatterns = {"/verresultados"})
-public class verresultados extends HttpServlet {
+public class nuevousuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,35 +33,37 @@ public class verresultados extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+       // Obtener parametros de la forma
+        String username = request.getParameter("username");
+        String mail = request.getParameter("mail");
+
+        // Crear sesion, asumir que no se hizo log in exitoso
         HttpSession session = request.getSession();
+        session.setAttribute("loggedIn", false);
+        session.setAttribute("loginmsg", "");
+        String url = "/login.jsp";
         
-        try {
+       try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
             Statement stmt = con.createStatement();
             
-            ResultSet rs = stmt.executeQuery("select nombre, sum(points) as p, count(points) from resultados join alumno on id_alumno = Alumno.id group by nombre order by p desc");
-            List<String> alumnos = new ArrayList<>();
-            List<Integer> puntos = new ArrayList<>();
-            List<Integer> juegos = new ArrayList<>();
-            while (rs.next()) {
-                alumnos.add(rs.getString(1));
-                puntos.add(rs.getInt(2));
-                juegos.add(rs.getInt(3));
+            ResultSet rs = stmt.executeQuery("select count(*) from Usuario where nombre = '" + username + "'");
+            if (rs.next()) {
+                if (rs.getInt(1) != 0) {
+                    session.setAttribute("error_crear_usuario", "Ya existe un usuario con ese nombre.");
+                    url = "/nuevo_usuario.jsp";
+                } else {
+                    stmt.executeUpdate("insert into Usuario (nombre) values ('" + username + "');");
+                }
             }
-            
-            session.setAttribute("alumnos", alumnos);
-            session.setAttribute("puntos", puntos);
-            session.setAttribute("juegos", juegos);
             
         } catch (Exception e) {
             System.out.println(e);
         }
 
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/ver_resultados.jsp");
+        RequestDispatcher rd = sc.getRequestDispatcher(url);
         rd.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

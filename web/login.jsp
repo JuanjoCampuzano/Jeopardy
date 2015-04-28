@@ -16,18 +16,7 @@
             }
             
     </script>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Jeopardy</title>
-        <link type="text/css" rel="stylesheet" href="document_css.css" />
-        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    </head>
-
-    <body>
-        <div class="pageContent">
-
+    <%@include file="header.jsp"%>
         <%
             String msg = (String)session.getAttribute("loginmsg");
             if (msg == null) msg = "";
@@ -43,9 +32,10 @@
                     <tr><td><h4 id="seleccion">Username</h4></td><td><input type="text" name="username"></td></tr>
                     <tr><td><h4 id="seleccion">Password</h4></td><td><input type="password" name="password"></tr>
                 </table>
-                <div id="break">
-                    <input id="click_button_small" type="submit" onclick="return validateForm()" value="Entrar">
-                </div>
+                <input type="submit" id="click_button_small" onclick="return validateForm()" value="Entrar">
+            </form>
+            <form name="nuevo_user" action="new_user.php" method="post">
+                <input type="submit" id="click_button_small" value="Nuevo usuario">
             </form>
         </fieldset>
     </center>

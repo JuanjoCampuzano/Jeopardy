@@ -15,7 +15,7 @@
         <table id="table_menu">
             <tr id="table_row">
                 <td>
-                    <form action="ver_resultados.jsp" method="get">
+                    <form action="verresultados" method="get">
                     <input type="submit" id="click_button" value="Ver Resultados"/>
                     </form>
                 </td>                   
